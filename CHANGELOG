@@ -1,0 +1,24 @@
+Version 2.0.1 2008-07-30
+- Works when deploying to a server without capistrano installed
+- Updated README and WIKI (improved documentation)
+
+Version 2.0 2008-07-25
+
+- Works with Rails 2.1
+- Works with Capistrano 2.4.3
+- Added access to many of Capistrano's internal variables (~25) so the emails can be more informative
+- Added inferred_command, repo_end and some other derived variables that give more insight into a deployment
+- Parameters are now sent in a hash
+- Emails updated with new information
+- HTML email improved layout, and added styling (thanks to Dustin Deyoung @ Sagebit)
+
+Version 1.0.1 2008-03-26
+
+- Works with Rails 2.0.2
+- Works with Capistrano 2.1.0 - 2.2.0
+- Compatability with Deprec verified
+
+Version 1.0 2008-02-11
+
+- Works with Rails 2.0.2
+- Works with Capistrano 2.1.0

@@ -1,0 +1,31 @@
+<div style="margin: 20px; padding: 0 0 20px 0;">
+
+  <h2 style="margin: 0px; padding: 10px 10px 5px 10px; background: #eee; border-left: 10px solid #ccc; color: #333;">
+    <%= section_title.titleize %>
+  </h2>
+  <% if data.is_a?(Array) then data = data[0] end -%>
+  <% arr = case section_title
+      when 'deployment'
+        [:date,:time,:rails_env,:task_name,:inferred_command,:host,:release_name]
+      when 'source_control'
+        [:scm,:released,:revision,:deploy_via,:deploy_to,:repository]
+      when 'latest_release'
+        [:latest_release,:latest_revision,:real_revision,:release_path,:current_path]
+      when 'previous_release'
+        [:current_release,:current_revision,:previous_release,:previous_revision,:releases]
+      when 'other_deployment_info'
+        [:ip_address,:run_method,:source,:strategy,:version_dir,:shared_dir,:current_dir,:releases_path,:shared_path]
+      end -%>
+  <% if !arr.nil? && arr.is_a?(Array) %>
+    <% arr.each do |key| -%>
+      <% if key.is_a?(Symbol) && !data[key].nil?-%>
+        <p style="margin: 10px; padding: 0px;">
+          <span style="float:left; width:150px; padding: 10px 10px 0;"><%= key.to_s.titleize %></span>
+          <span style="float:left; width:490px; padding: 10px 10px 0;"><%= data[key].is_a?(Array) ? data[key].to_sentence : data[key].is_a?(String) ? data[key] : data[key].inspect %></span>
+        </p>
+      <% end -%>
+    <% end -%>
+  <% end -%>
+  <p style="clear:both"></p>
+  
+</div>

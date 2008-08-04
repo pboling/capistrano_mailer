@@ -1,0 +1,23 @@
+<%= section_title.titleize %>
+===========================================================
+
+<% if data.is_a?(Array) then data = data[0] end -%>
+<% arr = case section_title
+    when 'deployment'
+      [:date,:time,:rails_env,:task,:inferred_command,:host,:release_name]
+    when 'source_control'
+      [:scm,:released,:revision,:deploy_via,:deploy_to,:repository]
+    when 'latest_release'
+      [:latest_release,:latest_revision,:real_revision,:release_path,:current_path]
+    when 'previous_release'
+      [:current_release,:current_revision,:previous_release,:previous_revision,:releases]
+    when 'other_deployment_info'
+      [:ip_address,:run_method,:source,:strategy,:version_dir,:shared_dir,:current_dir,:releases_path,:shared_path]
+    end -%>
+<% if !arr.nil? && arr.is_a?(Array) %>
+  <% arr.each do |key| -%>
+    <% if key.is_a?(Symbol) && !data[key].nil?-%>
+        <%= key.to_s.titleize %>                <%= data[key].is_a?(Array) ? data[key].to_sentence : data[key].is_a?(String) ? data[key] : data[key].inspect %>
+    <% end -%>
+  <% end -%>
+<% end -%>

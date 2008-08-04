@@ -1,0 +1,9 @@
+<%= section_title.titleize %>
+===========================================================
+
+<% if data.is_a?(Array) then data = data[0] end -%>
+<% data.each do |key, value| -%>
+  <% if !key.nil? && !value.nil? -%>
+    <%= key %>         <%= value.is_a?(Array) ? value.to_sentence : value.is_a?(String) ? value : value.inspect%>
+  <% end -%>
+<% end -%>

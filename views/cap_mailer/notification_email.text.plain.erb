@@ -1,0 +1,19 @@
+<%= @site_name %> Notification
+===========================================================
+
+    <%= @site_name %> <%=@task_name.titleize%>
+===========================================================
+      Brought to you by: Capistrano Mailer</a>
+      Released: <%= @date %> at <%= @time %>
+      
+      <%= @sections.map { |section|
+        data = @section_data[section.to_sym]
+        if %w(extra_information more_data).include?(section)
+          render :partial => 'section_custom.text.erb', :locals => {:section_title => section, :data => data} unless data.empty?
+        else
+        	render :partial => 'section.text.erb', :locals => {:section_title => section, :data => data} unless data.empty?
+        end
+      }.join %>
+
+===========================================================
+    Copyright 2008 Sagebit LLC under MIT License
