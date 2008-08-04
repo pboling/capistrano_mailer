@@ -28,6 +28,7 @@ http://code.google.com/p/capistrano-mailer/
 
 ==== at least Capistrano 2.4.3 (might work with capistrano as old as 2.1.0) ====
 
+
 == Installation ==
 
 Using SVN:
@@ -37,6 +38,7 @@ Using SVN:
 Or using Git:
 
 ./script/plugin install http://github.com/pboling/capistrano_mailer.git
+
 
 == Usage ==
 

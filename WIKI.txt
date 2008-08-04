@@ -28,11 +28,21 @@ http://code.google.com/p/capistrano-mailer/
 
 ==== at least Capistrano 2.4.3 (might work with capistrano as old as 2.1.0) ====
 
+
 == Installation ==
+
+Using SVN:
 
 {{{
 ./script/plugin install http://capistrano-mailer.googlecode.com/svn/trunk/capistrano_mailer
 }}}
+
+Or using Git:
+
+{{{
+./script/plugin install http://github.com/pboling/capistrano_mailer.git
+}}}
+
 
 == Usage ==
 
