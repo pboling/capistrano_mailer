@@ -42,6 +42,19 @@ Using SVN (deprecated, repository is no longer updated):
 ./script/plugin install http://capistrano-mailer.googlecode.com/svn/trunk/capistrano_mailer
 
 
+== Upgrading
+
+from any previous version to version 2.1.0
+
+In your deploy.rb change 
+
+  mailer.send
+  
+to
+ 
+  mailer.send_mail
+
+
 == Usage
 
   1. Install the plugin.
@@ -88,7 +101,7 @@ Using SVN (deprecated, repository is no longer updated):
       desc "Send email notification of deployment (only send variables you want to be in the email)"
       task :notify, :roles => :app do
         show.me
-        mailer.send([
+        mailer.send_mail([
                           :rails_env => rails_env, 
                           :host => host, 
                           :task_name => task_name, 
