@@ -35,7 +35,7 @@ http://github.com/pboling/capistrano_mailer/tree/master
 
 Using Git:
 
-./script/plugin install http://github.com/pboling/capistrano_mailer.git
+./script/plugin install git://github.com/pboling/capistrano_mailer.git
 
 Using SVN (deprecated, repository is no longer updated):
 
