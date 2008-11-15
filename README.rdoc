@@ -69,20 +69,20 @@ to
     
     ActionMailer::Base.delivery_method = :smtp
     ActionMailer::Base.smtp_settings = { 
-        :address        => "mail.default.com", 
+        :address        => "mail.example.com", 
         :port           => 25, 
         :domain         => 'default.com', 
         :perform_deliveries => true,
-        :user_name      => "releases@default.com", 
+        :user_name      => "releases@example.com", 
         :password       => "mypassword", 
         :authentication => :login }
     ActionMailer::Base.default_charset = "utf-8"# or "latin1" or whatever you are using
     
     CapMailer.template_root = "vendor/plugins/capistrano_mailer/views/"
-    CapMailer.recipient_addresses = ["dev1@default.com"]
+    CapMailer.recipient_addresses = ["dev1@example.com"]
     CapMailer.sender_address = %("Capistrano Deployment" <releases@default.com>)
-    CapMailer.email_prefix = "[MYSITE-CAP-DEPLOY]"
-    CapMailer.site_name = "MySite.com"
+    CapMailer.email_prefix = "[EXAMPLE-CAP-DEPLOY]"
+    CapMailer.site_name = "Example.com"
     CapMailer.email_content_type = "text/html" # OR "text/plain" if you want the plain text version of the email
 
   4. Add these two tasks to your deploy.rb:
