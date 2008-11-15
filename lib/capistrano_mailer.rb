@@ -4,7 +4,7 @@ require 'action_mailer' unless defined?(ActionMailer)
 require 'config/cap_mailer_settings'
 
 module CapistranoMailer
-  def send(cap_vars, extra = {}, data = {})
+  def send_mail(cap_vars, extra = {}, data = {})
     CapMailer.deliver_notification_email(cap_vars, extra, data)
   end
 end
