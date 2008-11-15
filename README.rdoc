@@ -1,8 +1,7 @@
-= Capistrano Mailer v2.1.0 (20081115) =
+= Capistrano Mailer v2.1.0 (20081115)
 
-== For Capistrano Deployment Email Notification ==
-
-== It is a Capistrano Plugin AND a Rails Plugin ==
+  * For Capistrano Deployment Email Notification 
+  * It is a Capistrano Plugin AND a Rails Plugin
 
 Ever wanted to be emailed whenever someone on the team does a cap deploy of trunk or some tag to some server.  
 Wouldn't it be nice to know about it every time a release was deployed?  For large rails projects this type of coordination is essential, 
@@ -20,19 +19,19 @@ But if you want to take the easy road to riches then keep reading ;)
 Important Note:
 The first time you deploy to a server (a 'cold' deploy) capistrano mailer will cause an error because it uses capistrano's previous release variables, and when there are no previous releases capistrano throws an error.  In the next version this will be fixed, just don't have time at the moment.
 
-== Home Page ==
+== Home Page
 
-http://code.google.com/p/capistrano-mailer/
-
-
-== Requirements ==
-
-==== at least Rails 1.2.6 (might work with older versions, but has not been tested) ====
-
-==== at least Capistrano 2.4.3 (might work with capistrano as old as 2.1.0, but has not been tested) ====
+http://github.com/pboling/capistrano_mailer/tree/master
 
 
-== Installation ==
+== Requirements
+
+  * at least Rails 1.2.6 (might work with older versions, but has not been tested)
+
+  * at least Capistrano 2.4.3 (might work with capistrano as old as 2.1.0, but has not been tested)
+
+
+== Installation
 
 Using Git:
 
@@ -43,7 +42,7 @@ Using SVN (deprecated, repository is no longer updated):
 ./script/plugin install http://capistrano-mailer.googlecode.com/svn/trunk/capistrano_mailer
 
 
-== Usage ==
+== Usage
 
   1. Install the plugin.
 
