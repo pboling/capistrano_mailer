@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
              "README.rdoc",
              "capistrano_mailer.gemspec",
              "init.rb",
-             "lib/mailer.rb",
+             "lib/cap_mailer.rb",
              "lib/capistrano/mailer.rb",
              "views/cap_mailer/_section.html.erb",
              "views/cap_mailer/_section.text.erb",

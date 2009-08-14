@@ -9,6 +9,8 @@ unless Capistrano::Configuration.respond_to?(:instance)
   abort "capistrano/mailer requires Capistrano 2"
 end
 
+require 'cap_mailer'
+
 module Capistrano
   class Configuration
     module CapistranoMailer
