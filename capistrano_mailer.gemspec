@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'capistrano_mailer'
-  s.version = '0.1.0'
+  s.version = '0.2.0'
   s.date = '2009-08-14'
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
 
