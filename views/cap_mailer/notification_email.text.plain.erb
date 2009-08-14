@@ -1,7 +1,7 @@
 <%= @site_name %> Notification
 ===========================================================
 
-    <%= @site_name %> <%=@task_name.titleize%>
+    <%= @site_name %> <%=@task_name.titleize unless @task_name.nil? %>
 ===========================================================
       Brought to you by: Capistrano Mailer</a>
       Released: <%= @date %> at <%= @time %>
@@ -13,7 +13,7 @@
         else
         	render :partial => 'section.text.erb', :locals => {:section_title => section, :data => data} unless data.empty?
         end
-      }.join %>
+      }.join @sections.nil? %>
 
 ===========================================================
     Copyright 2009 Peter Boling under MIT License
