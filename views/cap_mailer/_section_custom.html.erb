@@ -1,6 +1,6 @@
 <div style="margin: 20px; padding: 0 0 20px 0;">
 
-  <h2 style="margin: 0px; padding: 10px 10px 5px 10px; background: #eee; border-left: 10px solid #ccc; color: #333;"><%= section_title.titleize %></h2>
+  <h2 style="margin: 0px; padding: 10px 10px 5px 10px; background: #eee; border-left: 10px solid #ccc; color: #333;"><%= section_title.titleize unless section_title.nil? -%></h2>
   <% if data.is_a?(Array) then data = data[0] end -%>
   <% data.each do |key, value| -%>
     <% if !key.nil? && !value.nil? -%>
@@ -9,7 +9,7 @@
         <span style="float:left; width:490px; padding: 10px 10px 0;"><%= value.is_a?(Array) ? value.to_sentence : value.is_a?(String) ? value : value.inspect%></span>
       </p>
     <% end -%>
-  <% end -%>
+  <% end unless data.nil?-%>
   <p style="clear:both"></p>
   
 </div>

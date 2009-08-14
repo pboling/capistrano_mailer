@@ -9,7 +9,7 @@
     <div style="width:800px; margin: 10px auto; background: #fff; border: 10px solid #aaa;">
     
       <h1 style="clear: both; margin: 0; padding: 40px 20px 5px 20px; border-bottom: 1px dotted; background: #ccc;">
-        <%= @site_name %> <%=@task_name.titleize%>
+        <%= @site_name %> <%=@task_name.titleize unless @task_name.nil? %>
       </h1>
 
       <p style="margin: 8px 0 20px 20px; padding: 0px; font-style: italic;" >
@@ -25,7 +25,7 @@
         else
         	render :partial => 'section.html.erb', :locals => {:section_title => section, :data => data} unless data.empty?
         end
-      }.join %>
+      }.join unless @sections.nil? %>
    </div>
    
    <div style="text-align:center;">

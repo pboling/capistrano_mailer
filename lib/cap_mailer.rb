@@ -50,7 +50,7 @@ class CapMailer < ActionMailer::Base
         front = front.slice(0..x)
       end
       repo_end = repo.sub(front, '')
-      puts "CAP VARS: #{cap_vars.inspect}"
+      task_name = cap_vars.first[:task_name] || "unknown"
       data.merge({
         :section_data => {
           :deployment =>
@@ -58,7 +58,7 @@ class CapMailer < ActionMailer::Base
               :date => date,
               :time => time,
               :rails_env => cap_vars.first[:rails_env],
-              :task_name => cap_vars.first[:task_name],
+              :task_name => task_name,
               :inferred_command => inferred_command,
               :host => cap_vars.first[:host],
               :release_name => cap_vars.first[:release_name]
@@ -103,7 +103,7 @@ class CapMailer < ActionMailer::Base
         },
         :date => date,
         :time => time,
-        :task_name => cap_vars.first[:task_name],
+        :task_name => task_name,
         :inferred_command => inferred_command,
         :repo_end => repo_end,
         :site_name => config[:site_name],

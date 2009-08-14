@@ -1,4 +1,4 @@
-<%= section_title.titleize %>
+<%= section_title.titleize unless section_title.nil? -%>
 ===========================================================
 
 <% if data.is_a?(Array) then data = data[0] end -%>

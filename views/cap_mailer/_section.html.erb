@@ -1,7 +1,7 @@
 <div style="margin: 20px; padding: 0 0 20px 0;">
 
   <h2 style="margin: 0px; padding: 10px 10px 5px 10px; background: #eee; border-left: 10px solid #ccc; color: #333;">
-    <%= section_title.titleize %>
+    <%= section_title.titleize unless section_title.nil? -%>
   </h2>
   <% if data.is_a?(Array) then data = data[0] end -%>
   <% arr = case section_title

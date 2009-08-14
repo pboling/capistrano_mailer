@@ -1,4 +1,4 @@
-<%= section_title.titleize %>
+<%= section_title.titleize unless section_title.nil? -%>
 ===========================================================
 
 <% if data.is_a?(Array) then data = data[0] end -%>
@@ -6,4 +6,4 @@
   <% if !key.nil? && !value.nil? -%>
     <%= key %>         <%= value.is_a?(Array) ? value.to_sentence : value.is_a?(String) ? value : value.inspect%>
   <% end -%>
-<% end -%>
+<% end unless data.nil?-%>
