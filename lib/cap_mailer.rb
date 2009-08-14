@@ -1,10 +1,10 @@
 class CapMailer < ActionMailer::Base
 
   @@config = {
-    :sender_address           => %("#{self.cap_environment} Capistrano Deployment" <capistrano.mailer@example.com>),
+    :sender_address           => %("#{(defined?(Rails) ? Rails.env.capitalize : defined?(RAILS_ENV) ? RAILS_ENV.capitalize : defined?(ENV) ? ENV['RAILS_ENV'] : "")} Capistrano Deployment" <capistrano.mailer@example.com>),
     :recipient_addresses      => [],
     # Customize the subject line
-    :subject_prepend          => "[DEPLOYMENT]-[#{(defined?(Rails) ? Rails.env.capitalize : "")}] ",
+    :subject_prepend          => "[DEPLOYMENT]-[#{(defined?(Rails) ? Rails.env.capitalize : defined?(RAILS_ENV) ? RAILS_ENV.capitalize : defined?(ENV) ? ENV['RAILS_ENV'] : "")}] ",
     :subject_append           => nil,
     # Include which sections of the deployment email?
     :sections                 => %w(deployment release_data source_control latest_release previous_release other_deployment_info extra_information),
@@ -23,12 +23,6 @@ class CapMailer < ActionMailer::Base
   self.template_root = config[:template_root]
 
   def self.reloadable?() false end
-
-  def self.cap_environment
-    (defined?(Rails) ? Rails.env.capitalize : defined?(RAILS_ENV) ? RAILS_ENV.capitalize : defined?(ENV) ? ENV['RAILS_ENV'] : "")
-  end
-
-  def self.reloadable?; false; end
 
   def notification_email(cap_vars, release_data = {}, extra_information = {}, data = {})
     body_hash = body_data_hash(cap_vars, release_data = {}, extra_information = {}, data = {})
@@ -56,7 +50,7 @@ class CapMailer < ActionMailer::Base
         front = front.slice(0..x)
       end
       repo_end = repo.sub(front, '')
-
+      puts "CAP VARS: #{cap_vars.inspect}"
       data.merge({
         :section_data => {
           :deployment =>
