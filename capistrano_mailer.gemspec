@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = 'capistrano_mailer'
-  s.version = '0.2.2'
-  s.date = '2009-08-14'
+  s.version = '3.0.0'
+  s.date = '2009-09-19'
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
 
   s.summary = %q{Sends emails when Capistrano is used to do things!}
@@ -20,8 +20,10 @@ Gem::Specification.new do |s|
              "README.rdoc",
              "capistrano_mailer.gemspec",
              "init.rb",
+             "about.yml",
              "lib/cap_mailer.rb",
              "lib/capistrano/mailer.rb",
+             "Rakefile",
              "views/cap_mailer/_section.html.erb",
              "views/cap_mailer/_section.text.erb",
              "views/cap_mailer/_section_custom.html.erb",

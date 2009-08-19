@@ -1,3 +1,13 @@
+Version 3.0.0 2009-09-19
+- turned into a gem
+- New API for configuration
+- improved email templates (hardened against crappy data)
+- added simple testing framwork and Rakefile
+- still compatible with deprec
+
+Version 2.1.0 2008-11-15
+- improved readme, and other stuff I don't remember
+
 Version 2.0.1 2008-07-30
 - Works when deploying to a server without capistrano installed
 - Updated README and WIKI (improved documentation)

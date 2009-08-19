@@ -1,14 +1,17 @@
 require 'rubygems' unless defined?(Rubygems)
 require 'capistrano' unless defined?(Capistrano)
-require 'action_mailer' unless defined?(ActionMailer)
-require 'cap_mailer'
-
-# ActionMailer configuration in the rails app
-require 'config/cap_mailer_settings'
 
 unless Capistrano::Configuration.respond_to?(:instance)
   abort "capistrano/mailer requires Capistrano 2"
 end
+
+require 'action_mailer' unless defined?(ActionMailer)
+
+require 'cap_mailer' unless defined?(CapMailer)
+
+# ActionMailer configuration in the rails app
+require 'config/cap_mailer_settings'
+
 
 module Capistrano
   class Configuration

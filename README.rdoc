@@ -1,15 +1,17 @@
-= Capistrano Mailer v2.1.0 (20081115)
+= Capistrano Mailer v3.0.0 (20090919)
 
   * For Capistrano Deployment Email Notification 
-  * It is a Capistrano Plugin AND a Rails Plugin
+  * It is a Capistrano Plugin / Rails Plugin / Ruby Gem
 
 Ever wanted to be emailed whenever someone on the team does a cap deploy of trunk or some tag to some server.  
 Wouldn't it be nice to know about it every time a release was deployed?  For large rails projects this type of coordination is essential, 
 and this plugin makes sure everyone on the need to know list is notified when something new is deployed.
 
-This plugin is an extension to Capistrano.
+This plugin/gem is an extension to Capistrano.
 
 That means it registers itself with Capistrano as a plugin and is therefore available to call in your recipes.
+
+It is compatible with, but does not require, the deprec gem.
 
 If you are looking to roll your own email integration into capistrano then try this pastie:
 http://pastie.org/146264 (thanks to Mislav Marohnić).
@@ -17,7 +19,7 @@ But if you want to take the easy road to riches then keep reading ;)
  -- figurative "riches" of course, I promise nothing in return for your using this plugin
 
 Important Note:
-The first time you deploy to a server (a 'cold' deploy) capistrano mailer will cause an error because it uses capistrano's previous release variables, and when there are no previous releases capistrano throws an error.  In the next version this will be fixed, just don't have time at the moment.
+The first time you deploy to a server (a 'cold' deploy) capistrano mailer will cause an error because it uses capistrano's previous release variables, and when there are no previous releases capistrano throws an error.  In the next version this will be fixed, just don't have time at the moment.  If you would like to work on this 'first deploy' problem please fork my repo and work on it!
 
 == Home Page
 
@@ -33,39 +35,59 @@ http://github.com/pboling/capistrano_mailer/tree/master
 
 == Installation
 
-Using Git:
+Gem Using Git building from source:
 
-./script/plugin install git://github.com/pboling/capistrano_mailer.git
+  mkdir -p ~/src
+  cd ~/src
+  git clone git://github.com/pboling/capistrano_mailer.git
+  cd capistrano_mailer
+  gem build capistrano_mailer.gemspec
+  sudo gem install capistrano_mailer-3.0.0.gem # (Or whatever version gets built)
+
+Then cd to your rails app to optionally freeze the gem into your app:
+
+  rake gems:freeze GEM=capistrano_mailer
+  # You do NOT need to add a config.gem line to environment.rb for capistrano mailer.
+
+Installing Gem from Github's Gem Server:
+
+  gem sources -a http://gems.github.com
+  sudo gem install pboling-capistrano_mailer
+  # You do NOT need to add a config.gem line to environment.rb for capistrano mailer.
+
+Plugin using Git:
+
+  # Installation as plugin might work... I haven't tried it.
+  ./script/plugin install git://github.com/pboling/capistrano_mailer.git
 
 Using SVN (deprecated, repository is no longer updated):
 
-./script/plugin install http://capistrano-mailer.googlecode.com/svn/trunk/capistrano_mailer
+  ./script/plugin install http://capistrano-mailer.googlecode.com/svn/trunk/capistrano_mailer
 
 
 == Upgrading
 
-from any previous version to version 2.1.0
+From version 2.1.0 to version 3.0.0:
 
-In your deploy.rb change 
-
-  mailer.send
-  
-to
- 
-  mailer.send_mail
+Update the way CapistranoMailer is configured using the new method: CapMailer.configure_capistrano_mailer, see below.
+Update the require statement at the top of deploy.rb, see below (note for plugin change from capostrano_mailer to capistrano/mailer).
 
 
 == Usage
 
-  1. Install the plugin.
+  1. Install as gem or plugin.
 
   2. Add this line to the top of your deploy.rb:
 
-    require 'vendor/plugins/capistrano_mailer/lib/capistrano_mailer'
+    # For gem:
+    require 'capistrano/mailer'
+
+    # For plugin:
+    require 'vendor/plugins/capistrano_mailer/lib/capistrano/mailer'
 
   3. Add a cap_mailer_settings.rb file to your config/ directory:
 
-    require 'vendor/plugins/capistrano_mailer/lib/cap_mailer'
+    # If installed as a plugin might need the require here as well
     
     ActionMailer::Base.delivery_method = :smtp
     ActionMailer::Base.smtp_settings = { 
@@ -78,12 +100,16 @@ to
         :authentication => :login }
     ActionMailer::Base.default_charset = "utf-8"# or "latin1" or whatever you are using
     
-    CapMailer.template_root = "vendor/plugins/capistrano_mailer/views/"
-    CapMailer.recipient_addresses = ["dev1@example.com"]
-    CapMailer.sender_address = %("Capistrano Deployment" <releases@default.com>)
-    CapMailer.email_prefix = "[EXAMPLE-CAP-DEPLOY]"
-    CapMailer.site_name = "Example.com"
-    CapMailer.email_content_type = "text/html" # OR "text/plain" if you want the plain text version of the email
+    CapMailer.configure_capistrano_mailer do |config|
+      config[:recipient_addresses]  = ["dev1@example.com"]
+      # NOTE: THERE IS A BUG IN RAILS 2.3.3 which forces us to NOT use anything but a simple email address string for the sender address.
+      # https://rails.lighthouseapp.com/projects/8994/tickets/2340
+      # Therefore %("Capistrano Deployment" <releases@example.com>) style addresses may not work in Rails 2.3.3
+      config[:sender_address]       = "deployment@example.com"
+      config[:subject_prepend]      = "[EMPTY-CAP-DEPLOY]"
+      config[:site_name]            = "Empty Example.com App"
+      config[:email_content_type]   = "text/html" # OR "text/plain" if you want the plain text version of the email
+    end
 
   4. Add these two tasks to your deploy.rb:
 
@@ -91,7 +117,7 @@ to
       desc "Show some internal Cap-Fu: What's mah NAYM?!?"
       task :me do
         set :task_name, task_call_frames.first.task.fully_qualified_name
-        puts "Running #{task_name} task"
+        #puts "Running #{task_name} task"
       end
     end
     
@@ -100,7 +126,7 @@ to
       
       desc "Send email notification of deployment (only send variables you want to be in the email)"
       task :notify, :roles => :app do
-        show.me
+        show.me  # this sets the task_name variable
         mailer.send_mail([
                           :rails_env => rails_env, 
                           :host => host, 
@@ -173,27 +199,23 @@ to
   If you want to use your own views you'll need to recreate the notification_email view:
   First you need to define where your templates are:
 
-    CapMailer.template_root = "app/views/capistrano_mailer/"
+    CapMailer.configure_capistrano_mailer do |config|
+      config[:template_root]      = "app/views/capistrano_mailer/"
+    end
 
   Then you'll need to create templates there called:
-	notification_email.text.html.erb
+    notification_email.text.html.erb
   and / or
-	notification_email.text.plain.erb
+    notification_email.text.plain.erb
 
-  Take a look at the templates that comes with the plugin to see how it is done (vendor/plugins/capistrano_mailer/views/notification_email...)
-
-  8. For Rails 2.1 apps
-
-  You may want to add this inside your initializer
-
-    config.gem 'capistrano',
-      :version => '2.4.3',
-      :lib => 'capistrano'
+  Take a look at the templates that comes with the plugin to see how it is done (views/cap_mailer/...)
 
 
 ----------------------------------------------------------------------------------
-	This plugin is a creation of Sagebit, LLC. (http://www.sagebit.com)
+  This plugin is a collaboration between Sagebit, LLC (http://www.sagebit.com) and Peter Boling (http://www.peterboling.com)
 
-	Author: Peter Boling, peter.boling at gmail dot com
+  Author: Peter Boling, peter.boling at gmail dot com
 
-	Copyright (c) 2007-8 Sagebit LLC, released under the MIT license
+  Copyright (c) 2009 Peter Boling of 9thBit LLC, released under the MIT license
+  Copyright (c) 2007-8 Sagebit LLC, released under the MIT license
+  Copyright (c) 2007 Peter Boling under MIT License
