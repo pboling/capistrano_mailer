@@ -1,4 +1,4 @@
-= Capistrano Mailer v3.0.0 (20090919)
+= Capistrano Mailer v3.0.1 (20090921)
 
   * For Capistrano Deployment Email Notification 
   * It is a Capistrano Plugin / Rails Plugin / Ruby Gem
@@ -42,7 +42,7 @@ Gem Using Git building from source:
   git clone git://github.com/pboling/capistrano_mailer.git
   cd capistrano_mailer
   gem build capistrano_mailer.gemspec
-  sudo gem install capistrano_mailer-3.0.0.gem # (Or whatever version gets built)
+  sudo gem install capistrano_mailer-3.0.1.gem # (Or whatever version gets built)
 
 Then cd to your rails app to optionally freeze the gem into your app:
 
@@ -67,7 +67,7 @@ Using SVN (deprecated, repository is no longer updated):
 
 == Upgrading
 
-From version 2.1.0 to version 3.0.0:
+From version 2.1.0 to version 3.0.1:
 
 Update the way CapistranoMailer is configured using the new method: CapMailer.configure_capistrano_mailer, see below.
 Update the require statement at the top of deploy.rb, see below (note for plugin change from capostrano_mailer to capistrano/mailer).

@@ -25,7 +25,6 @@ class CapMailer < ActionMailer::Base
 
   def notification_email(cap_vars, release_data = {}, extra_information = {}, data = {})
     body_hash = body_data_hash(cap_vars, release_data = {}, extra_information = {}, data = {})
-    puts "notification_email: body_hash: #{body_hash.inspect}"
     subject       "#{config[:subject_prepend]}[#{cap_vars.first[:rails_env].upcase}][#{body_hash[:repo_end]}] #{body_hash[:inferred_command]}#{config[:subject_append]}"
     recipients    config[:recipient_addresses]
     from          config[:sender_address]

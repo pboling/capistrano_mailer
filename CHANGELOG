@@ -1,3 +1,6 @@
+Version 3.0.1 2009-09-21
+- removed a stray puts used in debugging
+
 Version 3.0.0 2009-09-19
 - turned into a gem
 - New API for configuration
