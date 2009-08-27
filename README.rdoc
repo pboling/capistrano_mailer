@@ -127,7 +127,7 @@ Update the require statement at the top of deploy.rb, see below (note for plugin
       desc "Send email notification of deployment (only send variables you want to be in the email)"
       task :notify, :roles => :app do
         show.me  # this sets the task_name variable
-        mailer.send_mail([
+        mailer.send_notification_email([
                           :rails_env => rails_env, 
                           :host => host, 
                           :task_name => task_name, 
@@ -177,7 +177,7 @@ Update the require statement at the top of deploy.rb, see below (note for plugin
   Make _sure_ you've defined `rails_env`, `repository`, `deploy_to`, `host`, and `application`.
   task_name is defined by the show:me task above, and the others are defined behind the scenes by Capistrano!
 
-  The only parameter to mailer.send that is *required* is the first array of hashes, and _minimally_ it needs the keys:
+  The only parameter to mailer.send_notification_email that is *required* is the first array of hashes, and _minimally_ it needs the keys:
      :rails_env
      :repository
      :task_name (provided by the show:me task included in this readme)
@@ -218,4 +218,3 @@ Update the require statement at the top of deploy.rb, see below (note for plugin
 
   Copyright (c) 2009 Peter Boling of 9thBit LLC, released under the MIT license
   Copyright (c) 2007-8 Sagebit LLC, released under the MIT license
-  Copyright (c) 2007 Peter Boling under MIT License
