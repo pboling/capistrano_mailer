@@ -40,7 +40,7 @@ class CapMailer < ActionMailer::Base
       time = Time.now.strftime("%I:%M %p").to_s
       inferred_command = "cap #{cap_vars.first[:rails_env]} #{cap_vars.first[:task_name]}"
       repo = cap_vars.first[:repository]
-      x = repo.rindex('/') - 1
+      x = (repo.include?('/')) ? repo.rindex('/') - 1 : repo
       front = repo.slice(0..x)
       back = repo.sub(front, '')
       unless back == 'trunk'
