@@ -1,7 +1,7 @@
-= Capistrano Mailer v3.0.1 (20090921)
+= Capistrano Mailer v3.1.0 (20090917)
 
   * For Capistrano Deployment Email Notification 
-  * It is a Capistrano Plugin / Rails Plugin / Ruby Gem
+  * It is a Capistrano Plugin / Ruby Gem that requires ActionMailer
 
 Ever wanted to be emailed whenever someone on the team does a cap deploy of trunk or some tag to some server.  
 Wouldn't it be nice to know about it every time a release was deployed?  For large rails projects this type of coordination is essential, 
@@ -10,8 +10,6 @@ and this plugin makes sure everyone on the need to know list is notified when so
 This plugin/gem is an extension to Capistrano.
 
 That means it registers itself with Capistrano as a plugin and is therefore available to call in your recipes.
-
-It is compatible with, but does not require, the deprec gem.
 
 If you are looking to roll your own email integration into capistrano then try this pastie:
 http://pastie.org/146264 (thanks to Mislav Marohnić).
@@ -32,6 +30,10 @@ http://github.com/pboling/capistrano_mailer/tree/master
 
   * at least Capistrano 2.4.3 (might work with capistrano as old as 2.1.0, but has not been tested)
 
+  * Known to be compatible with SCMs as of version 3.1.0: Perforce, SVN 
+
+  * Known to be compatible with, but does not require, the deprec gem.
+
 
 == Installation
 
@@ -42,7 +44,7 @@ Gem Using Git building from source:
   git clone git://github.com/pboling/capistrano_mailer.git
   cd capistrano_mailer
   gem build capistrano_mailer.gemspec
-  sudo gem install capistrano_mailer-3.0.1.gem # (Or whatever version gets built)
+  sudo gem install capistrano_mailer-3.0.3.gem # (Or whatever version gets built)
 
 Then cd to your rails app to optionally freeze the gem into your app:
 
@@ -64,14 +66,13 @@ Using SVN (deprecated, repository is no longer updated):
 
   ./script/plugin install http://capistrano-mailer.googlecode.com/svn/trunk/capistrano_mailer
 
-
 == Upgrading
 
-From version 2.1.0 to version 3.0.1:
+From version 2.1.0 to version 3.x.x:
 
-Update the way CapistranoMailer is configured using the new method: CapMailer.configure_capistrano_mailer, see below.
-Update the require statement at the top of deploy.rb, see below (note for plugin change from capostrano_mailer to capistrano/mailer).
-
+1. Update the way CapistranoMailer is configured using the new method: CapMailer.configure_capistrano_mailer, see below.
+2. Update the require statement at the top of deploy.rb, see below (note for plugin change from capostrano_mailer to capistrano/mailer).
+3. Change the mailer.send to mailer.send_notification_email in your cap recipe.
 
 == Usage
 
@@ -212,7 +213,8 @@ Update the require statement at the top of deploy.rb, see below (note for plugin
 
 
 ----------------------------------------------------------------------------------
-  This plugin is a collaboration between Sagebit, LLC (http://www.sagebit.com) and Peter Boling (http://www.peterboling.com)
+  This plugin is a collaboration between Sagebit, LLC (http://www.sagebit.com) and Peter Boling (http://www.peterboling.com).
+  Written initially while Peter Boling was working at Sagebit for use in various projects.
 
   Author: Peter Boling, peter.boling at gmail dot com
 

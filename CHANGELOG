@@ -1,10 +1,16 @@
-Version 3.0.2 2009-09-27
+Version 3.1.0 2009-09-17
+- Added compatability with perforce (thanks to Andy Kock / ak47)
+
+Version 3.0.3 2009-09-03
+- Improved readme and upgrade instructions
+
+Version 3.0.2 2009-08-27
 - Fixed some typos in readme referencing outdated API
 
-Version 3.0.1 2009-09-21
+Version 3.0.1 2009-08-21
 - removed a stray puts used in debugging
 
-Version 3.0.0 2009-09-19
+Version 3.0.0 2009-08-19
 - turned into a gem
 - New API for configuration
 - improved email templates (hardened against crappy data)
