@@ -84,6 +84,7 @@ From version 2.1.0 to version 3.x.x:
     require 'capistrano/mailer'
 
     # For plugin:
+    $:.unshift File.join(File.dirname(__FILE__), '..', 'vendor/plugins/capistrano_mailer/lib')
     require 'vendor/plugins/capistrano_mailer/lib/capistrano/mailer'
 
   3. Add a cap_mailer_settings.rb file to your config/ directory:
