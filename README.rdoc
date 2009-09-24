@@ -1,4 +1,4 @@
-= Capistrano Mailer v3.1.0 (20090917)
+= Capistrano Mailer v3.1.1 (20090924)
 
   * For Capistrano Deployment Email Notification 
   * It is a Capistrano Plugin / Ruby Gem that requires ActionMailer
