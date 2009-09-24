@@ -59,7 +59,7 @@ Installing Gem from Github's Gem Server:
 
 Plugin using Git:
 
-  # Installation as plugin might work... I haven't tried it.
+  # Installation as plugin works... but the setup is slightly different. (See Usage below)
   ./script/plugin install git://github.com/pboling/capistrano_mailer.git
 
 Using SVN (deprecated, repository is no longer updated):
@@ -76,16 +76,19 @@ From version 2.1.0 to version 3.x.x:
 
 == Usage
 
-  1. Install as gem or plugin.
+  1. Install as gem or plugin.  You need to have already setup capistrano in the project, including the 'capify .' command.
 
-  2. Add this line to the top of your deploy.rb:
+  2. Add this line to the top of your config/deploy.rb:
 
     # For gem:
+    #   You do NOT need to register the gem in your environment file using config.gem
     require 'capistrano/mailer'
 
     # For plugin:
-    $:.unshift File.join(File.dirname(__FILE__), '..', 'vendor/plugins/capistrano_mailer/lib')
-    require 'vendor/plugins/capistrano_mailer/lib/capistrano/mailer'
+    #   You must make capistrano_mailer's libraries available in Ruby's load path.  This is one way to do that:
+    #   Add to the top of your config/deploy.rb file:
+    $:.unshift 'vendor/plugins/capistrano_mailer/lib'
+    require 'capistrano/mailer'
 
   3. Add a cap_mailer_settings.rb file to your config/ directory:
 

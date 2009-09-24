@@ -1,3 +1,7 @@
+Version 3.1.1 2009-09-24
+- Added back compatability with svn which broke when fixing for perforce (thanks to Matthew Beale / mixonic)
+- Improved Readme for plugin installation.  Tested as a plugin.  Verified continued compatibility with Deprec.
+
 Version 3.1.0 2009-09-17
 - Added compatability with perforce (thanks to Andy Kock / ak47)
 
