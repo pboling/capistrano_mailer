@@ -1,3 +1,7 @@
+Version 3.1.2 2009-09-25
+- Fixed footer copyright
+- Trying to get github to build the gem
+
 Version 3.1.1 2009-09-24
 - Added back compatability with svn which broke when fixing for perforce (thanks to Matthew Beale / mixonic)
 - Improved Readme for plugin installation.  Tested as a plugin.  Verified continued compatibility with Deprec.

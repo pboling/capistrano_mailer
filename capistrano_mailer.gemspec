@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = 'capistrano_mailer'
-  s.version = '3.1.1'
-  s.date = '2009-09-24'
+  s.version = '3.1.2'
+  s.date = '2009-09-25'
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
 
   s.summary = %q{Sends emails when Capistrano is used to do things!}

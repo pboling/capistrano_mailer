@@ -1,4 +1,4 @@
-= Capistrano Mailer v3.1.1 (20090924)
+= Capistrano Mailer v3.1.2 (20090925)
 
   * For Capistrano Deployment Email Notification 
   * It is a Capistrano Plugin / Ruby Gem that requires ActionMailer
@@ -30,7 +30,7 @@ http://github.com/pboling/capistrano_mailer/tree/master
 
   * at least Capistrano 2.4.3 (might work with capistrano as old as 2.1.0, but has not been tested)
 
-  * Known to be compatible with SCMs as of version 3.1.1: Perforce, SVN 
+  * Known to be compatible with SCMs as of version 3.1.2: Perforce, SVN 
 
   * Known to be compatible with, but does not require, the deprec gem.
 
