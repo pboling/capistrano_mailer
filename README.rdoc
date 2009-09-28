@@ -1,7 +1,8 @@
-= Capistrano Mailer v3.1.2 (20090925)
+= Capistrano Mailer v3.1.3 (20090925)
 
   * For Capistrano Deployment Email Notification 
   * It is a Capistrano Plugin / Ruby Gem that requires ActionMailer
+  * It is MIT-LICENSE (License file is in source only for now because github won't build the gem if it is bundled with the gem... ?)
 
 Ever wanted to be emailed whenever someone on the team does a cap deploy of trunk or some tag to some server.  
 Wouldn't it be nice to know about it every time a release was deployed?  For large rails projects this type of coordination is essential, 
@@ -24,13 +25,18 @@ The first time you deploy to a server (a 'cold' deploy) capistrano mailer will c
 http://github.com/pboling/capistrano_mailer/tree/master
 
 
+== Credit where Credit is Due
+
+  * Thanks to Dustin Deyoung of Sagebit, LLC (http://www.sagebit.com) for the beautiful HTML email templates.
+
+
 == Requirements
 
   * at least Rails 1.2.6 (might work with older versions, but has not been tested)
 
   * at least Capistrano 2.4.3 (might work with capistrano as old as 2.1.0, but has not been tested)
 
-  * Known to be compatible with SCMs as of version 3.1.2: Perforce, SVN 
+  * Known to be compatible with SCMs as of version 3.1.2: Perforce, SVN, and Git
 
   * Known to be compatible with, but does not require, the deprec gem.
 
@@ -44,7 +50,7 @@ Gem Using Git building from source:
   git clone git://github.com/pboling/capistrano_mailer.git
   cd capistrano_mailer
   gem build capistrano_mailer.gemspec
-  sudo gem install capistrano_mailer-3.0.3.gem # (Or whatever version gets built)
+  sudo gem install capistrano_mailer-3.1.3.gem # (Or whatever version gets built)
 
 Then cd to your rails app to optionally freeze the gem into your app:
 

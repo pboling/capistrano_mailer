@@ -1,3 +1,9 @@
+Version 3.1.3 2009-09-28
+- Added Git as known compatable SCM to readme
+- Credited Dustin Deyoung as Author of HTML Email templates
+- Removed MIT-LICENSE file from gemspec (because github refuses to build with it there)
+- Still trying to get github to build the gem
+
 Version 3.1.2 2009-09-25
 - Fixed footer copyright
 - Trying to get github to build the gem
@@ -33,7 +39,6 @@ Version 2.0.1 2008-07-30
 - Updated README and WIKI (improved documentation)
 
 Version 2.0 2008-07-25
-
 - Works with Rails 2.1
 - Works with Capistrano 2.4.3
 - Added access to many of Capistrano's internal variables (~25) so the emails can be more informative
@@ -43,12 +48,10 @@ Version 2.0 2008-07-25
 - HTML email improved layout, and added styling (thanks to Dustin Deyoung @ Sagebit)
 
 Version 1.0.1 2008-03-26
-
 - Works with Rails 2.0.2
 - Works with Capistrano 2.1.0 - 2.2.0
 - Compatability with Deprec verified
 
 Version 1.0 2008-02-11
-
 - Works with Rails 2.0.2
 - Works with Capistrano 2.1.0
