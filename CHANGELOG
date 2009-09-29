@@ -1,4 +1,4 @@
-Version 3.1.3 2009-09-28
+Version 3.1.3 2009-09-29
 - Added Git as known compatable SCM to readme
 - Credited Dustin Deyoung as Author of HTML Email templates
 - Removed MIT-LICENSE file from gemspec (because github refuses to build with it there)
