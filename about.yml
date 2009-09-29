@@ -1,4 +1,6 @@
-author: Peter Boling
+author:
+  name: Peter Boling
+  homepage: http://www.peterboling.com
 summary: Sends rails deployment notification emails from Capistrano
 homepage: http://github.com/pboling/capistrano_mailer/tree/master
 plugin: http://github.com/pboling/capistrano_mailer.git
