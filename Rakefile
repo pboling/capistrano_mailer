@@ -11,7 +11,7 @@ begin
     gemspec.email = "peter.boling@gmail.com"
     gemspec.homepage = "http://github.com/pboling/capistrano_mailer"
     gemspec.authors = ["Peter Boling"]
-    gemspec.add_dependency 'action_mailer'
+    gemspec.add_dependency 'actionmailer'
     gemspec.files = ["README.rdoc",
              "capistrano_mailer.gemspec",
              "init.rb",
