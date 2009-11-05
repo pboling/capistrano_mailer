@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{capistrano_mailer}
-  s.version = "3.1.4"
+  s.version = "3.1.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Peter Boling"]
-  s.date = %q{2009-11-03}
+  s.date = %q{2009-11-05}
   s.description = %q{Capistrano Deployment Email Notification.  Keep the whole team informed of each release!}
   s.email = %q{peter.boling@gmail.com}
   s.extra_rdoc_files = [
@@ -45,12 +45,12 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<action_mailer>, [">= 0"])
+      s.add_runtime_dependency(%q<actionmailer>, [">= 0"])
     else
-      s.add_dependency(%q<action_mailer>, [">= 0"])
+      s.add_dependency(%q<actionmailer>, [">= 0"])
     end
   else
-    s.add_dependency(%q<action_mailer>, [">= 0"])
+    s.add_dependency(%q<actionmailer>, [">= 0"])
   end
 end
 
