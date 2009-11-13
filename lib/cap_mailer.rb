@@ -92,6 +92,7 @@ class CapMailer < ActionMailer::Base
         :revision => cap_vars.first[:revision],
         :released => repo_end,
         :repository => cap_vars.first[:repository],
+        :branch => cap_vars.first[:branch],
         :scm => cap_vars.first[:scm],
         :deploy_via => cap_vars.first[:deploy_via],
         :deploy_to => cap_vars.first[:deploy_to]

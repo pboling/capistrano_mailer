@@ -8,7 +8,7 @@
       when 'deployment'
         [:date,:time,:rails_env,:task_name,:inferred_command,:host,:release_name]
       when 'source_control'
-        [:scm,:released,:revision,:deploy_via,:deploy_to,:repository]
+        [:scm,:released,:branch,:revision,:deploy_via,:deploy_to,:repository]
       when 'latest_release'
         [:latest_release,:latest_revision,:real_revision,:release_path,:current_path]
       when 'previous_release'
