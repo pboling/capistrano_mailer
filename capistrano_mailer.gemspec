@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
      "views/cap_mailer/_section.html.erb",
      "views/cap_mailer/_section.text.erb",
      "views/cap_mailer/_section_custom.html.erb",
+     "views/cap_mailer/_section_custom.text.erb",
      "views/cap_mailer/notification_email.text.html.erb",
      "views/cap_mailer/notification_email.text.plain.erb"
   ]
