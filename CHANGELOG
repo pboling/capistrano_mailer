@@ -1,3 +1,7 @@
+Version 3.1.10 2010-01-07
+- included _section.text.erb view in gem manifest
+- text version of email should render the text partials, not html
+
 Version 3.1.9 2010-01-07
 - Fixed URL for capistrano_mailer repo on github in HTML email message
 
