@@ -1,4 +1,7 @@
-Version 3.1.7 2010-01-07
+Version 3.1.9 2010-01-07
+- Fixed URL for capistrano_mailer repo on github in HTML email message
+
+Version 3.1.8 2010-01-07
 - Improved Readme
 
 Version 3.1.6 2009-11-10
