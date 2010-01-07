@@ -61,7 +61,8 @@ Gemcutter is the hot new gem host, and you can use it like this:
 Then cd to your rails app to optionally freeze the gem into your app:
 
   rake gems:freeze GEM=super_exception_notifier
-  # You do NOT need to add a config.gem line to environment.rb for capistrano mailer.
+  # You do NOT need to add a config.gem line to environment.rb for capistrano mailer,
+  # But in order to use the gems:freeze task you DO need ot add it as a config.gem, at least temporarily.
 
 Plugin using Git:
 
@@ -100,8 +101,8 @@ From version 2.1.0 to version 3.x.x:
 
     # If installed as a plugin might need the require here as well
     
-    ActionMailer::Base.delivery_method = :smtp
-    ActionMailer::Base.smtp_settings = { 
+    ActionMailer::Base.delivery_method = :smtp # or :sendmail, or whatever
+    ActionMailer::Base.smtp_settings = { # if using :smtp
         :address        => "mail.example.com", 
         :port           => 25, 
         :domain         => 'default.com', 
