@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{capistrano_mailer}
-  s.version = "3.1.9"
+  s.version = "3.1.10"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Peter Boling"]
@@ -27,7 +27,6 @@ Gem::Specification.new do |s|
      "views/cap_mailer/_section.html.erb",
      "views/cap_mailer/_section.text.erb",
      "views/cap_mailer/_section_custom.html.erb",
-     "views/cap_mailer/_section_custom.text.erb",
      "views/cap_mailer/notification_email.text.html.erb",
      "views/cap_mailer/notification_email.text.plain.erb"
   ]
