@@ -7,10 +7,10 @@ begin
   Jeweler::Tasks.new do |gemspec|
     gemspec.name = "textgoeshere-capistrano_mailer"
     gemspec.summary = "Fork of Capistrano Deployment Email Notification"
-    gemspec.description = %q{Capistrano Deployment Email Notification.  Keep the whole team informed of each release!}
-    gemspec.email = "peter.boling@gmail.com"
-    gemspec.homepage = "http://github.com/pboling/capistrano_mailer"
-    gemspec.authors = ["Peter Boling", "Dave Nolam"]
+    gemspec.description = %q{Fork of Capistrano Deployment Email Notification.  Keep the whole team informed of each release!}
+    gemspec.email = "dave@textgoeshere.org.uk"
+    gemspec.homepage = "http://github.com/textgoeshere/capistrano_mailer"
+    gemspec.authors = ["Peter Boling", "Dave Nolan"]
     gemspec.add_dependency 'actionmailer'
     gemspec.files = ["README.rdoc",
              "capistrano_mailer.gemspec",
