@@ -97,7 +97,7 @@ From version 2.1.0 to version 3.x.x:
     $:.unshift 'vendor/plugins/capistrano_mailer/lib'
     require 'capistrano/mailer'
 
-  3. Add a cap_mailer_settings.rb file to your config/ directory:
+  3. Add cap_mailer configuration to deploy (or place it in another file and require it after capistrano/mailer':
 
     # If installed as a plugin might need the require here as well
     

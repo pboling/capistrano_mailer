@@ -9,9 +9,6 @@ require 'action_mailer' unless defined?(ActionMailer)
 
 require 'cap_mailer' unless defined?(CapMailer)
 
-# ActionMailer configuration in the rails app
-require 'config/cap_mailer_settings'
-
 
 module Capistrano
   class Configuration
