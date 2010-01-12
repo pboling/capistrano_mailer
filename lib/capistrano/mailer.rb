@@ -1,5 +1,6 @@
 require 'rubygems' unless defined?(Rubygems)
 require 'capistrano' unless defined?(Capistrano)
+require 'active_support'
 
 unless Capistrano::Configuration.respond_to?(:instance)
   abort "capistrano/mailer requires Capistrano 2"
@@ -13,8 +14,8 @@ require 'cap_mailer' unless defined?(CapMailer)
 module Capistrano
   class Configuration
     module CapistranoMailer
-      def send_notification_email(cap_vars, extra = {}, data = {})
-        CapMailer.deliver_notification_email(cap_vars, extra, data)
+      def send_notification_email(cap, config = {}, *args)
+        CapMailer.deliver_notification_email(cap, config, args)
       end
     end
 

@@ -11,10 +11,10 @@
       <h1 style="clear: both; margin: 0; padding: 40px 20px 5px 20px; border-bottom: 1px dotted; background: #ccc;">
         <%= @site_name %> <%=@task_name.titleize unless @task_name.nil? %>
       </h1>
-
-      <p style="margin: 8px 0 20px 20px; padding: 0px; font-style: italic;" >
-        Brought to you by: <a href="http://github.com/pboling/capistrano_mailer">Capistrano Mailer</a>
-      </p>
+      
+    <p style="margin: 8px 0 20px 20px; padding: 0px; font-style: italic;" >
+      View site: <a href="<%= @site_url -%>"><%= @site_url -%></a>
+    </p>
       
       <p style="margin: 10px 20px; font-weight: bold;">Released: <%= @date %> at <%= @time %></p>
       
@@ -30,9 +30,8 @@
       }.join unless @sections.nil? %>
    </div>
    
-   <div style="text-align:center;">
-     &copy; 2009 <a href="http://www.9thbit.net">9thBit LLC</a>, MIT License<br/>
-     &copy; 2007-8 <a href="http://www.sagebit.com">Sagebit LLC</a>, MIT License
-   </div>
+    <p style="margin: 8px 0 20px 20px; padding: 0px; font-style: italic;" >
+      Brought to you by: <a href="http://github.com/textgoeshere/capistrano_mailer">Capistrano Mailer</a>
+    </p>
 	</body>
 </html>
