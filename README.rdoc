@@ -197,6 +197,12 @@ From version 2.1.0 to version 3.1.x:
 
   Take a look at the templates that comes with the plugin to see how it is done (views/cap_mailer/...)
 
+== Capistrano Variables
+
+CapistranoMailer uses capistrano variables to work most of its magic.
+A list of many of them is available here:
+http://labs.peritor.com/webistrano/wiki/ConfigurationParameter
+
 == Authors
 
 Peter Boling (pboling) - Wrote original
