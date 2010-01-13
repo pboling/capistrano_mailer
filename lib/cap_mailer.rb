@@ -89,7 +89,10 @@ class CapMailer < ActionMailer::Base
   private
   
     def subject_line
-      config[:subject] || config[:user] ? "[#{config[:application]}] #{inferred_command} by #{config[:user]}" : "[#{config[:application]}] #{inferred_command}"
+      #The subject prepend and append are useful for people to setup filters in mail clients.
+      user = config[:user] ? " by #{config[:user]}" : ""
+      middle = config[:subject] ? config[:subject] : "[#{config[:rails_env].upcase}][#{repo_end}] #{inferred_command}#{user}"
+      "#{config[:subject_prepend]}#{middle}#{config[:subject_append]}"
     end
 
     def body_data_hash

@@ -1,3 +1,6 @@
+Version 3.2.4 2010-01-13
+- Fixed subject line format (mail client filters are based on format of subject line)
+
 Version 3.2.3 2010-01-13
 - config[:user] is now optional.
 
