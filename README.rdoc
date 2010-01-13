@@ -100,7 +100,7 @@ From version 2.1.0 to version 3.1.x:
     # For frozen gem:
     #   You must make capistrano_mailer's libraries available in Ruby's load path.  This is one way to do that:
     #   Add to the top of your config/deploy.rb file:
-    $:.unshift 'vendor/gems/capistrano_mailer-3.2.1/lib'
+    $:.unshift 'vendor/gems/capistrano_mailer-x.x.x/lib'
 
     # then for gem or plugin:
     ####################################
