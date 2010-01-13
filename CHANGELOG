@@ -1,3 +1,9 @@
+Version 3.2.3 2010-01-13
+- config[:user] is now optional.
+
+Version 3.2.2 2010-01-13
+- Improved Readme
+
 Version 3.2.1 2010-01-13
 - Added deprecation warning for configure_capistrano_mailer
 - commented :site_url, doesn't appear to be a native capistrano variable, if sent in will still be rendered.

@@ -58,6 +58,7 @@ class CapMailer < ActionMailer::Base
           :previous_revision  => cap.previous_revision,
           :run_method         => cap.run_method,
           :latest_release     => cap.latest_release
+    
           #This does not appear to be a capistrano variable:
           #:site_url           => cap.site_url
     }))
@@ -88,7 +89,7 @@ class CapMailer < ActionMailer::Base
   private
   
     def subject_line
-      config[:subject] || "[#{config[:application]}] #{inferred_command} by #{config[:user]}"
+      config[:subject] || config[:user] ? "[#{config[:application]}] #{inferred_command} by #{config[:user]}" : "[#{config[:application]}] #{inferred_command}"
     end
 
     def body_data_hash
