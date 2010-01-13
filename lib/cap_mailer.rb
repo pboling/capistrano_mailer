@@ -21,6 +21,10 @@ class CapMailer < ActionMailer::Base
     yield @@default_base_config
   end
 
+  def self.configure_capistrano_mailer(&block)
+    puts "Deprecated 'configure_capistrano_mailer'.  Please update your capistrano_mailer configuration to use 'configure' instead of 'configure_capistrano_mailer'"
+  end
+
   self.template_root = default_base_config[:template_root]
 
   def self.reloadable?() false end
@@ -53,8 +57,9 @@ class CapMailer < ActionMailer::Base
           :latest_revision    => cap.latest_revision,
           :previous_revision  => cap.previous_revision,
           :run_method         => cap.run_method,
-          :latest_release     => cap.latest_release,
-          :site_url           => cap.site_url
+          :latest_release     => cap.latest_release
+          #This does not appear to be a capistrano variable:
+          #:site_url           => cap.site_url
     }))
     
     @date             = Date.today.to_s

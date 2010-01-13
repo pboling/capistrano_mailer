@@ -1,4 +1,4 @@
-= Capistrano Mailer v3.1.3 (20090925)
+= Capistrano Mailer
 
   * For Capistrano Deployment Email Notification 
   * It is a Capistrano Plugin / Ruby Gem that requires ActionMailer
@@ -22,7 +22,7 @@ The first time you deploy to a server (a 'cold' deploy) capistrano mailer will c
 
 == Home Page
 
-http://github.com/pboling/capistrano_mailer/tree/master
+http://github.com/pboling/capistrano_mailer
 
 
 == Credit where Credit is Due
@@ -62,7 +62,7 @@ Then cd to your rails app to optionally freeze the gem into your app:
 
   rake gems:freeze GEM=capistrano_mailer
   # You do NOT need to add a config.gem line to environment.rb for capistrano mailer,
-  # But in order to use the gems:freeze task you DO need ot add it as a config.gem, at least temporarily.
+  # But in order to use the gems:freeze task you DO need to add it as a config.gem, at least temporarily.
 
 Plugin using Git:
 
@@ -75,9 +75,14 @@ Using SVN (deprecated, repository is no longer updated):
 
 == Upgrading
 
-From version 2.1.0 to version 3.x.x:
+From version 3.1.x to version 3.2.x
 
-1. Update the way CapistranoMailer is configured using the new method: CapMailer.configure_capistrano_mailer, see below.
+1. Update the way CapistranoMailer is configured using the new method: CapMailer.configure (see Usage below).
+2. require the cap mailer config file (see Usage below)
+
+From version 2.1.0 to version 3.1.x:
+
+1. Update the way CapistranoMailer is configured using the new method: CapMailer.configure_capistrano_mailer (changed in later versions to just 'configure') (see Usage below).
 2. Update the require statement at the top of deploy.rb, see below (note for plugin change from capistrano_mailer to capistrano/mailer).
 3. Change the mailer.send to mailer.send_notification_email in your cap recipe.
 
@@ -87,17 +92,21 @@ From version 2.1.0 to version 3.x.x:
 
   2. Add this line to the top of your config/deploy.rb:
 
-    # For gem:
-    #   You do NOT need to register the gem in your environment file using config.gem
-    require 'capistrano/mailer'
-
     # For plugin:
     #   You must make capistrano_mailer's libraries available in Ruby's load path.  This is one way to do that:
     #   Add to the top of your config/deploy.rb file:
     $:.unshift 'vendor/plugins/capistrano_mailer/lib'
-    require 'capistrano/mailer'
 
-  3. Add cap_mailer configuration to deploy (or place it in another file and require it after capistrano/mailer':
+    # then for gem or plugin:
+    ####################################
+    # Capistrano Plugins go here
+    require 'capistrano/mailer'
+    #configure capistrano_mailer:
+    # The configuration file can go anywhere, but in past versions of the gem it was required to be in the config/ dir.
+    require 'config/cap_mailer_settings'
+    ####################################
+
+  3. Configure Caistrano Mailer in the settings file required in step 2:
 
     # If installed as a plugin might need the require here as well
     
@@ -112,7 +121,7 @@ From version 2.1.0 to version 3.x.x:
         :authentication => :login }
     ActionMailer::Base.default_charset = "utf-8"# or "latin1" or whatever you are using
     
-    CapMailer.configure_capistrano_mailer do |config|
+    CapMailer.configure do |config|
       config[:recipient_addresses]  = ["dev1@example.com"]
       # NOTE: THERE IS A BUG IN RAILS 2.3.3 which forces us to NOT use anything but a simple email address string for the sender address.
       # https://rails.lighthouseapp.com/projects/8994/tickets/2340
@@ -183,6 +192,16 @@ From version 2.1.0 to version 3.x.x:
 
   Take a look at the templates that comes with the plugin to see how it is done (views/cap_mailer/...)
 
+== Authors
+
+Peter Boling (pboling) - Wrote original
+Dave Nolan (textgoeshere) - lots of refactoring merged into 3.2 release
+
+== Contributors
+
+Dustin Deyoung - HTML Email Templates
+mixonix - SCMs compatibility
+greut - SCMs compatibility
 
 ----------------------------------------------------------------------------------
   This plugin is a collaboration between Sagebit, LLC (http://www.sagebit.com) and Peter Boling (http://www.peterboling.com).

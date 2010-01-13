@@ -7,15 +7,17 @@
 	<body style="font: 14px normal Helvetica, Arial, Sans; background: #999;">
   
     <div style="width:800px; margin: 10px auto; background: #fff; border: 10px solid #aaa;">
-    
+
       <h1 style="clear: both; margin: 0; padding: 40px 20px 5px 20px; border-bottom: 1px dotted; background: #ccc;">
         <%= @site_name %> <%=@task_name.titleize unless @task_name.nil? %>
       </h1>
-      
-    <p style="margin: 8px 0 20px 20px; padding: 0px; font-style: italic;" >
-      View site: <a href="<%= @site_url -%>"><%= @site_url -%></a>
-    </p>
-      
+
+      <% unless @site_url.nil? %>
+        <p style="margin: 8px 0 20px 20px; padding: 0px; font-style: italic;" >
+          View site: <a href="<%= @site_url -%>"><%= @site_url -%></a>
+        </p>
+      <% end %>
+
       <p style="margin: 10px 20px; font-weight: bold;">Released: <%= @date %> at <%= @time %></p>
       
       <%= @sections.map { |section|

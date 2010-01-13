@@ -1,3 +1,11 @@
+Version 3.2.1 2010-01-13
+- Added deprecation warning for configure_capistrano_mailer
+- commented :site_url, doesn't appear to be a native capistrano variable, if sent in will still be rendered.
+
+Version 3.2.0 textgoeshere fork
+- config/cap_mailer_settings.rb is not longer a hard coded configuration location requirement.
+- refactoring core cap mailer class
+
 Version 3.1.10 2010-01-07
 - included _section.text.erb view in gem manifest
 - text version of email should render the text partials, not html

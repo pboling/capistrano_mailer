@@ -5,11 +5,11 @@ require 'rake/rdoctask'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
-    gemspec.name = "textgoeshere-capistrano_mailer"
-    gemspec.summary = "Fork of Capistrano Deployment Email Notification"
-    gemspec.description = %q{Fork of Capistrano Deployment Email Notification.  Keep the whole team informed of each release!}
-    gemspec.email = "dave@textgoeshere.org.uk"
-    gemspec.homepage = "http://github.com/textgoeshere/capistrano_mailer"
+    gemspec.name = "capistrano_mailer"
+    gemspec.summary = "Capistrano Deployment Email Notification"
+    gemspec.description = %q{Capistrano Deployment Email Notification.  Keep the whole team informed of each release!}
+    gemspec.email = ["peter.boling@gmail.com", "dave@textgoeshere.org.uk"]
+    gemspec.homepage = "http://github.com/pboling/capistrano_mailer"
     gemspec.authors = ["Peter Boling", "Dave Nolan"]
     gemspec.add_dependency 'actionmailer'
     gemspec.files = ["README.rdoc",
@@ -29,7 +29,7 @@ begin
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
-  puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
+  puts "Jeweler not available. Install it with: sudo gem install jeweler"
 end
 
 desc 'Default: run unit tests.'
