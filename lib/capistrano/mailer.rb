@@ -1,6 +1,5 @@
 require 'rubygems' unless defined?(Rubygems)
 require 'capistrano' unless defined?(Capistrano)
-require 'active_support'
 
 unless Capistrano::Configuration.respond_to?(:instance)
   abort "capistrano/mailer requires Capistrano 2"
