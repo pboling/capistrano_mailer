@@ -4,7 +4,7 @@
 <% if data.is_a?(Array) then data = data[0] end -%>
 <% arr = case section_title
     when 'deployment'
-      [:date,:time,:rails_env,:task,:inferred_command,:host,:release_name]
+      [:date,:time,:rails_env,:task,:inferred_command,:host,:release_name,:release_notes]
     when 'source_control'
       [:scm,:released,:branch,:revision,:deploy_via,:deploy_to,:repository]
     when 'latest_release'
