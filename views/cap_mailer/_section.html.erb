@@ -21,7 +21,7 @@
       <% if key.is_a?(Symbol) && !data[key].nil?-%>
         <p style="margin: 10px; padding: 0px;">
           <span style="float:left; width:150px; padding: 10px 10px 0;"><%= key.to_s.titleize %></span>
-          <span style="float:left; width:490px; padding: 10px 10px 0;"><%= data[key].is_a?(Array) ? data[key].to_sentence : data[key].is_a?(String) ? data[key].html_safe : data[key].inspect %></span>
+          <span style="float:left; width:490px; padding: 10px 10px 0;"><pre><%= data[key].is_a?(Array) ? data[key].to_sentence : data[key].is_a?(String) ? data[key] : data[key].inspect %></pre></span>
         </p>
       <% end -%>
     <% end -%>
