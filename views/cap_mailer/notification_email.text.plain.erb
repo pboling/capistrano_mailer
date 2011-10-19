@@ -15,7 +15,7 @@
             render :partial => 'section.text.erb', :locals => {:section_title => section, :data => data}
           end
         end
-      }.join unless @sections.nil? %>
+      }.join.html_safe unless @sections.nil? %>
 
 ===========================================================
     Copyright 2009 9thBit LLC under MIT License
