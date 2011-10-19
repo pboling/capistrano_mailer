@@ -6,7 +6,7 @@
   <% if data.is_a?(Array) then data = data[0] end -%>
   <% arr = case section_title
       when 'deployment'
-        [:date,:time,:rails_env,:task_name,:inferred_command,:host,:release_name]
+        [:date,:time,:rails_env,:task_name,:inferred_command,:host,:release_name,:release_notes]
       when 'source_control'
         [:scm,:released,:branch,:revision,:deploy_via,:deploy_to,:repository]
       when 'latest_release'
@@ -21,7 +21,7 @@
       <% if key.is_a?(Symbol) && !data[key].nil?-%>
         <p style="margin: 10px; padding: 0px;">
           <span style="float:left; width:150px; padding: 10px 10px 0;"><%= key.to_s.titleize %></span>
-          <span style="float:left; width:490px; padding: 10px 10px 0;"><%= data[key].is_a?(Array) ? data[key].to_sentence : data[key].is_a?(String) ? data[key] : data[key].inspect %></span>
+          <span style="float:left; width:490px; padding: 10px 10px 0;"><%= data[key].is_a?(Array) ? data[key].to_sentence : data[key].is_a?(String) ? data[key].gsub(/\n/, '<br>').gsub(/\n/, '<br>').html_safe : data[key].inspect.html_safe %></span>
         </p>
       <% end -%>
     <% end -%>

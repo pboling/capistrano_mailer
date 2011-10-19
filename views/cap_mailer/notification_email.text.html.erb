@@ -14,7 +14,7 @@
 
       <% unless @site_url.nil? %>
         <p style="margin: 8px 0 20px 20px; padding: 0px; font-style: italic;" >
-          View site: <a href="<%= @site_url -%>"><%= @site_url -%></a>
+          View site: <a href="<%= @site_url.html_safe -%>"><%= @site_url.html_safe -%></a>
         </p>
       <% end %>
 
@@ -29,7 +29,7 @@
             render :partial => 'section.html.erb', :locals => {:section_title => section, :data => data}
           end
         end
-      }.join unless @sections.nil? %>
+      }.join.html_safe unless @sections.nil? %>
    </div>
    
     <p style="margin: 8px 0 20px 20px; padding: 0px; font-style: italic;" >
