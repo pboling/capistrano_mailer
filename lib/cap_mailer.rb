@@ -25,7 +25,7 @@ class CapMailer < ActionMailer::Base
     puts "Deprecated 'configure_capistrano_mailer'.  Please update your capistrano_mailer configuration to use 'configure' instead of 'configure_capistrano_mailer'"
   end
 
-  self.template_root = default_base_config[:template_root]
+  self.prepend_view_path default_base_config[:template_root]
 
   def self.reloadable?() false end
     
@@ -43,7 +43,8 @@ class CapMailer < ActionMailer::Base
           :revision           => cap.revision,
           :real_revision      => cap.real_revision,
           :release_name       => cap.release_name,
-          :release_notes      => cap.release_notes,
+          #This does not appear to be a capistrano variable:
+          #:release_notes      => cap.release_notes,
           :version_dir        => cap.version_dir,
           :shared_dir         => cap.shared_dir,
           :current_dir        => cap.current_dir,
@@ -78,13 +79,14 @@ class CapMailer < ActionMailer::Base
       front = front.slice(0..x)
     end
     @repo_end = repo.sub(front, '')
-	  
-    subject       subject_line
-    recipients    @config[:recipient_addresses]
-    from          @config[:sender_address]
-    content_type  @config[:email_content_type]
 
-    body          body_data_hash
+    body_data_hash.each_pair do |k, v|
+      self.instance_variable_set("@#{k}", v)
+    end
+
+    mail :subject       => subject_line,
+         :to            => @config[:recipient_addresses],
+         :from          => @config[:sender_address]
   end
 
   private
