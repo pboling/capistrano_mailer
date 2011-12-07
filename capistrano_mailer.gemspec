@@ -27,8 +27,8 @@ Gem::Specification.new do |s|
      "views/cap_mailer/_section.html.erb",
      "views/cap_mailer/_section.text.erb",
      "views/cap_mailer/_section_custom.html.erb",
-     "views/cap_mailer/notification_email.text.html.erb",
-     "views/cap_mailer/notification_email.text.plain.erb"
+     "views/cap_mailer/notification_email.html.erb",
+     "views/cap_mailer/notification_email.text.erb"
   ]
   s.homepage = %q{http://github.com/pboling/capistrano_mailer}
   s.rdoc_options = ["--charset=UTF-8"]
