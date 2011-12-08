@@ -14,7 +14,7 @@ module Capistrano
   class Configuration
     module CapistranoMailer
       def send_notification_email(cap, config = {}, *args)
-        CapMailer.deliver_notification_email(cap, config, *args)
+        CapMailer.notification_email(cap, config, *args).deliver
       end
     end
 

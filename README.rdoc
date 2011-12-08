@@ -134,7 +134,6 @@ From version 2.1.0 to version 3.1.x:
       config[:sender_address]       = "deployment@example.com"
       config[:subject_prepend]      = "[EMPTY-CAP-DEPLOY]"
       config[:site_name]            = "Empty Example.com App"
-      config[:email_content_type]   = "text/html" # OR "text/plain" if you want the plain text version of the email
     end
 
   4. Add these two tasks to your deploy.rb:
