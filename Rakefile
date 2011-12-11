@@ -8,23 +8,22 @@ begin
     gemspec.name = "capistrano_mailer"
     gemspec.summary = "Capistrano Deployment Email Notification"
     gemspec.description = %q{Capistrano Deployment Email Notification.  Keep the whole team informed of each release!}
-    gemspec.email = ["peter.boling@gmail.com", "dave@textgoeshere.org.uk"]
+    gemspec.email = ["peter.boling@gmail.com", "dave@textgoeshere.org.uk", "jason@rustedcode.com"]
     gemspec.homepage = "http://github.com/pboling/capistrano_mailer"
-    gemspec.authors = ["Peter Boling", "Dave Nolan"]
+    gemspec.authors = ["Peter Boling", "Dave Nolan", "Jason Rust"]
     gemspec.add_dependency 'actionmailer'
     gemspec.files = ["README.rdoc",
              "capistrano_mailer.gemspec",
-             "init.rb",
-             "about.yml",
              "lib/cap_mailer.rb",
              "lib/capistrano/mailer.rb",
              "Rakefile",
+             "MIT-LICENSE",
              "views/cap_mailer/_section.html.erb",
              "views/cap_mailer/_section.text.erb",
              "views/cap_mailer/_section_custom.html.erb",
-             "views/cap_mailer/_section_custom.html.erb",
-             "views/cap_mailer/notification_email.text.html.erb",
-             "views/cap_mailer/notification_email.text.plain.erb",
+             "views/cap_mailer/_section_custom.text.erb",
+             "views/cap_mailer/notification_email.html.erb",
+             "views/cap_mailer/notification_email.text.erb",
              "VERSION.yml"]
   end
   Jeweler::GemcutterTasks.new
