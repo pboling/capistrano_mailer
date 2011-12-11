@@ -5,13 +5,13 @@
 
 Gem::Specification.new do |s|
   s.name = "capistrano_mailer"
-  s.version = "3.2.6"
+  s.version = "4.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Peter Boling", "Dave Nolan"]
+  s.authors = ["Peter Boling", "Dave Nolan", "Jason Rust"]
   s.date = "2011-12-11"
   s.description = "Capistrano Deployment Email Notification.  Keep the whole team informed of each release!"
-  s.email = ["peter.boling@gmail.com", "dave@textgoeshere.org.uk"]
+  s.email = ["peter.boling@gmail.com", "dave@textgoeshere.org.uk", "jason@rustedcode.com"]
   s.extra_rdoc_files = [
     "README.rdoc"
   ]
@@ -26,7 +26,9 @@ Gem::Specification.new do |s|
     "views/cap_mailer/_section.html.erb",
     "views/cap_mailer/_section.text.erb",
     "views/cap_mailer/_section_custom.html.erb",
-    "views/cap_mailer/_section_custom.text.erb"
+    "views/cap_mailer/_section_custom.text.erb",
+    "views/cap_mailer/notification_email.html.erb",
+    "views/cap_mailer/notification_email.text.erb"
   ]
   s.homepage = "http://github.com/pboling/capistrano_mailer"
   s.require_paths = ["lib"]
