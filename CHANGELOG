@@ -1,3 +1,11 @@
+Version 3.2.6 2011-12-11
+- General file cleanup
+- Improved Readme
+- Fix to *args passing to CapMailer.deliver_notification_email (dreamnid)
+
+Version 3.2.5 2010-04-29
+- Removed ActiveSupport dependency
+
 Version 3.2.4 2010-01-13
 - Fixed subject line format (mail client filters are based on format of subject line)
 
