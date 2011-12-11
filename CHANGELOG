@@ -1,3 +1,6 @@
+Version 4.0.1 2011-12-11
+- Fixed issues with README
+
 Version 4.0.0 2011-12-11
 - Using the new way of sending a mail by passing the mail command a hash of options and setting instance variables. (jrust)
 - Using Notifier.email_name().deliver instead (jrust)

@@ -32,7 +32,7 @@ http://github.com/pboling/capistrano_mailer
 
 == Requirements
 
-  * at least Rails 1.2.6 (might work with older versions, but has not been tested)
+  * at least Rails 3.0 (might work with older versions, but has not been tested)
 
   * at least Capistrano 2.4.3 (might work with capistrano as old as 2.1.0, but has not been tested)
 
@@ -53,26 +53,7 @@ Install as a gem:
 
 == Usage with Rails <= 2.3.x
 
-=== Installation
-
-Install the latest Rails 2 compatible version of the gem:
-
-  [sudo] gem install capistrano_mailer -v 3.2.5
-
-=== Upgrading
-
-The 3.x versions of the gem will remain compatible with Rails 2.x
-
-From version 3.1.x to version 3.2.x
-
-1. Update the way CapistranoMailer is configured using the new method: CapMailer.configure (see Usage below).
-2. require the cap mailer config file (see Usage below)
-
-From version 2.1.0 to version 3.1.x:
-
-1. Update the way CapistranoMailer is configured using the new method: CapMailer.configure_capistrano_mailer (changed in later versions to just 'configure') (see Usage below).
-2. Update the require statement at the top of deploy.rb, see below (note for plugin change from capistrano_mailer to capistrano/mailer).
-3. Change the mailer.send to mailer.send_notification_email in your cap recipe.
+Switch to the rails2 branch (releases will be in 3.x range)
 
 == Setup
 
