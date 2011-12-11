@@ -1,3 +1,15 @@
+Version 4.0.0 2011-12-11
+- Using the new way of sending a mail by passing the mail command a hash of options and setting instance variables. (jrust)
+- Using Notifier.email_name().deliver instead (jrust)
+- Using prepend_view_path for the template root (jrust)
+- Remove the content_type setting since just sends a multipart email.(jrust)
+- commented out the new release_notes variable, because even with version 2.9 of capistrano there was no cap method called release notes. (jrust)
+- file cleanup (pboling)
+- Improved Readme (pboling)
+
+Version 3.2.5 2010-04-29
+- Remove Active Support dependency
+
 Version 3.2.4 2010-01-13
 - Fixed subject line format (mail client filters are based on format of subject line)
 
