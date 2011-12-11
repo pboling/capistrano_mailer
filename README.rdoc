@@ -2,7 +2,7 @@
 
   * For Capistrano Deployment Email Notification 
   * It is a Capistrano Plugin / Ruby Gem that requires ActionMailer
-  * It is MIT-LICENSE (License file is in source only for now because github won't build the gem if it is bundled with the gem... ?)
+  * It is MIT-LICENSE
 
 Ever wanted to be emailed whenever someone on the team does a cap deploy of trunk or some tag to some server.  
 Wouldn't it be nice to know about it every time a release was deployed?  For large rails projects this type of coordination is essential, 
@@ -41,39 +41,27 @@ http://github.com/pboling/capistrano_mailer
   * Known to be compatible with, but does not require, the deprec gem.
 
 
-== Installation
+== Usage with Rails >= 3.x.x
 
-Gem Using Git building from source:
+The > 4.x versions of this gem require at least Rails 3
 
-  mkdir -p ~/src
-  cd ~/src
-  git clone git://github.com/pboling/capistrano_mailer.git
-  cd capistrano_mailer
-  gem build capistrano_mailer.gemspec
-  sudo gem install capistrano_mailer-3.1.6.gem # (Or whatever version gets built)
+=== Installation
 
-Gemcutter is the hot new gem host, and you can use it like this:
+Install as a gem:
 
-  [sudo] gem install gemcutter
-  [sudo] gem tumble # makes gemcutter gem source first in line, if you haven't already
   [sudo] gem install capistrano_mailer
 
-Then cd to your rails app to optionally freeze the gem into your app:
+== Usage with Rails <= 2.3.x
 
-  rake gems:freeze GEM=capistrano_mailer
-  # You do NOT need to add a config.gem line to environment.rb for capistrano mailer,
-  # But in order to use the gems:freeze task you DO need to add it as a config.gem, at least temporarily.
+=== Installation
 
-Plugin using Git:
+Install the latest Rails 2 compatible version of the gem:
 
-  # Installation as plugin works... but the setup is slightly different. (See Usage below)
-  ./script/plugin install git://github.com/pboling/capistrano_mailer.git
+  [sudo] gem install capistrano_mailer -v 3.2.5
 
-Using SVN (deprecated, repository is no longer updated):
+=== Upgrading
 
-  ./script/plugin install http://capistrano-mailer.googlecode.com/svn/trunk/capistrano_mailer
-
-== Upgrading
+The 3.x versions of the gem will remain compatible with Rails 2.x
 
 From version 3.1.x to version 3.2.x
 
@@ -86,120 +74,121 @@ From version 2.1.0 to version 3.1.x:
 2. Update the require statement at the top of deploy.rb, see below (note for plugin change from capistrano_mailer to capistrano/mailer).
 3. Change the mailer.send to mailer.send_notification_email in your cap recipe.
 
-== Usage
+== Setup
 
-  1. Install as gem or plugin.  You need to have already setup capistrano in the project, including the 'capify .' command.
+1. You need to have already setup capistrano in the project, including the 'capify .' command.
 
-  2. Add this line to the top of your config/deploy.rb:
+2. Add this line to the top of your config/deploy.rb:
 
-    # For plugin:
-    #   You must make capistrano_mailer's libraries available in Ruby's load path.  This is one way to do that:
-    #   Add to the top of your config/deploy.rb file:
-    $:.unshift 'vendor/plugins/capistrano_mailer/lib'
+  # For plugin:
+  #   You must make capistrano_mailer's libraries available in Ruby's load path.  This is one way to do that:
+  #   Add to the top of your config/deploy.rb file:
+  $:.unshift 'vendor/plugins/capistrano_mailer/lib'
 
-    # For frozen gem:
-    #   You must make capistrano_mailer's libraries available in Ruby's load path.  This is one way to do that:
-    #   Add to the top of your config/deploy.rb file:
-    $:.unshift 'vendor/gems/capistrano_mailer-x.x.x/lib'
+  # For frozen gem:
+  #   You must make capistrano_mailer's libraries available in Ruby's load path.  This is one way to do that:
+  #   Add to the top of your config/deploy.rb file:
+  $:.unshift 'vendor/gems/capistrano_mailer-x.x.x/lib'
 
-    # then for gem or plugin:
-    ####################################
-    # Capistrano Plugins go here
-    require 'capistrano/mailer'
-    #configure capistrano_mailer:
-    # The configuration file can go anywhere, but in past versions of the gem it was required to be in the config/ dir.
-    require 'config/cap_mailer_settings'
-    ####################################
+  # then for gem or plugin:
+  ####################################
+  # Capistrano Plugins go here
+  require 'capistrano/mailer'
+  #configure capistrano_mailer:
+  # The configuration file can go anywhere, but in past versions of the gem it was required to be in the config/ dir.
+  require 'config/cap_mailer_settings'
+  ####################################
 
-  3. Configure Caistrano Mailer in the settings file required in step 2:
+3. Configure Caistrano Mailer in the settings file required in step 2:
 
-    # If installed as a plugin might need the require here as well
-    
-    ActionMailer::Base.delivery_method = :smtp # or :sendmail, or whatever
-    ActionMailer::Base.smtp_settings = { # if using :smtp
-        :address        => "mail.example.com", 
-        :port           => 25, 
-        :domain         => 'default.com', 
-        :perform_deliveries => true,
-        :user_name      => "releases@example.com", 
-        :password       => "mypassword", 
-        :authentication => :login }
-    ActionMailer::Base.default_charset = "utf-8"# or "latin1" or whatever you are using
-    
-    CapMailer.configure do |config|
-      config[:recipient_addresses]  = ["dev1@example.com"]
-      # NOTE: THERE IS A BUG IN RAILS 2.3.3 which forces us to NOT use anything but a simple email address string for the sender address.
-      # https://rails.lighthouseapp.com/projects/8994/tickets/2340
-      # Therefore %("Capistrano Deployment" <releases@example.com>) style addresses may not work in Rails 2.3.3
-      config[:sender_address]       = "deployment@example.com"
-      config[:subject_prepend]      = "[EMPTY-CAP-DEPLOY]"
-      config[:site_name]            = "Empty Example.com App"
+  # If installed as a plugin might need the require here as well
+
+  ActionMailer::Base.delivery_method = :smtp # or :sendmail, or whatever
+  ActionMailer::Base.smtp_settings = { # if using :smtp
+      :address        => "mail.example.com",
+      :port           => 25,
+      :domain         => 'default.com',
+      :perform_deliveries => true,
+      :user_name      => "releases@example.com",
+      :password       => "mypassword",
+      :authentication => :login }
+  ActionMailer::Base.default_charset = "utf-8"# or "latin1" or whatever you are using
+
+  CapMailer.configure do |config|
+    config[:recipient_addresses]  = ["dev1@example.com"]
+    # NOTE: THERE IS A BUG IN RAILS 2.3.3 which forces us to NOT use anything but a simple email address string for the sender address.
+    # https://rails.lighthouseapp.com/projects/8994/tickets/2340
+    # Therefore %("Capistrano Deployment" <releases@example.com>) style addresses may not work in Rails 2.3.3
+    config[:sender_address]       = "deployment@example.com"
+    config[:subject_prepend]      = "[EMPTY-CAP-DEPLOY]"
+    config[:site_name]            = "Empty Example.com App"
+  end
+
+4. Add these two tasks to your deploy.rb:
+
+  namespace :show do
+    desc "Show some internal Cap-Fu: What's mah NAYM?!?"
+    task :me do
+      set :task_name, task_call_frames.first.task.fully_qualified_name
+      #puts "Running #{task_name} task"
+    end
+  end
+
+  namespace :deploy do
+    ...
+
+    desc "Send email notification of deployment (only send variables you want to be in the email)"
+    task :notify, :roles => :app do
+      show.me  # this sets the task_name variable
+      mailer.send_notification_email(self)
     end
 
-  4. Add these two tasks to your deploy.rb:
+    ...
+  end
 
-    namespace :show do
-      desc "Show some internal Cap-Fu: What's mah NAYM?!?"
-      task :me do
-        set :task_name, task_call_frames.first.task.fully_qualified_name
-        #puts "Running #{task_name} task"
-      end
-    end
-    
-    namespace :deploy do
-      ...
-      
-      desc "Send email notification of deployment (only send variables you want to be in the email)"
-      task :notify, :roles => :app do
-        show.me  # this sets the task_name variable
-        mailer.send_notification_email(self)
-      end
-    
-      ...
-    end
+5. Make _sure_ you've defined `rails_env`, `repository`, `deploy_to`, `host`, and `application`.  `task_name` is defined by the show:me task above, and the others are defined behind the scenes by Capistrano!
 
-  Make _sure_ you've defined `rails_env`, `repository`, `deploy_to`, `host`, and `application`.
-  task_name is defined by the show:me task above, and the others are defined behind the scenes by Capistrano!
+6. The only parameter to mailer.send_notification_email that is *required* is the first. _Minimally_ you need to define the capistrano variables:
 
-  The only parameter to mailer.send_notification_email that is *required* is the first. _Minimally_ you need to define the capistrano variables:
-     :rails_env
-     :repository
-     :task_name (provided by the show:me task included in this readme)
-     :deploy_to
-     :host
-     :application
+  :rails_env
+  :repository
+  :task_name (provided by the show:me task included in this readme)
+  :deploy_to
+  :host
+  :application
      
-  But there are tons of others - just take a look at lib/mailer/cap_mailer.rb.
+But there are tons of others - just take a look at lib/mailer/cap_mailer.rb.
 
-  If anyone has a cool way of recording the *output* into a capistrano accessible variable, 
-  so that it can be shoved into the release email that would be an excellent contribution!
+If anyone has a cool way of recording the *output* into a capistrano accessible variable,
+so that it can be shoved into the release email that would be an excellent contribution!
 
-  5. Then add the hook somewhere in your deploy.rb:
+7. Then add the hook somewhere in your deploy.rb:
 
-    after "deploy", "deploy:notify"
+  after "deploy", "deploy:notify"
 
-  6. Enjoy and Happy Capping!
+8. Enjoy and Happy Capping!
 
-  7. Customization
+9. Customization
 
-  If you want to use your own views you'll need to recreate the notification_email view:
-  First you need to define where your templates are:
+If you want to use your own views you'll need to recreate the notification_email view:
+First you need to define where your templates are:
 
-    CapMailer.configure_capistrano_mailer do |config|
-      config[:template_root]      = "app/views/capistrano_mailer/"
-    end
+  CapMailer.configure_capistrano_mailer do |config|
+    config[:template_root]      = "app/views/capistrano_mailer/"
+  end
 
-  Then you'll need to create templates there called:
-    notification_email.text.html.erb
-  and / or
-    notification_email.text.plain.erb
+Then you'll need to create templates there called:
+  `notification_email.text.html.erb`
+and / or
+  `notification_email.text.plain.erb`
 
-  Take a look at the templates that comes with the plugin to see how it is done (views/cap_mailer/...)
+Take a look at the templates that comes with the plugin to see how it is done (views/cap_mailer/...)
 
 == Authors
 
-Peter Boling (pboling) - Wrote original
+Peter Boling (pboling) - Wrote original & maintainer
 Dave Nolan (textgoeshere) - lots of refactoring merged into 3.2 release
+Jason Rust (jrust) - Updated for Rails 3 compatibility
 
 == Contributors
 
@@ -208,10 +197,10 @@ mixonix - SCMs compatibility
 greut - SCMs compatibility
 
 ----------------------------------------------------------------------------------
-  This plugin is a collaboration between Sagebit, LLC (http://www.sagebit.com) and Peter Boling (http://www.peterboling.com).
+  This plugin started out as a collaboration between Sagebit, LLC (http://www.sagebit.com) and Peter Boling (http://www.peterboling.com).
   Written initially while Peter Boling was working at Sagebit for use in various projects.
 
   Author: Peter Boling, peter.boling at gmail dot com
 
-  Copyright (c) 2009 Peter Boling of 9thBit LLC, released under the MIT license
-  Copyright (c) 2007-8 Sagebit LLC, released under the MIT license
+  Copyright (c) 2009-2011 Peter Boling of 9thBit LLC, released under the MIT license
+  Copyright (c) 2007-2008 Sagebit LLC, released under the MIT license
