@@ -1,7 +1,9 @@
-Version 3.2.6 2011-12-11
+Version 3.2.7 2011-12-11
 - General file cleanup
 - Improved Readme
 - Fix to *args passing to CapMailer.deliver_notification_email (dreamnid)
+
+Version 3.2.6 --botched--
 
 Version 3.2.5 2010-04-29
 - Removed ActiveSupport dependency

@@ -43,9 +43,13 @@ http://github.com/pboling/capistrano_mailer
 
 == Installation
 
-  [sudo] gem install capistrano_mailer
+Install the latest Rails 2 compatible version of the gem:
+
+  [sudo] gem install capistrano_mailer -v 3.2.7
 
 == Upgrading
+
+The 3.x versions of the gem will remain compatible with Rails 2.x, while the 4+ versions of the gem will move forward with Rails 3+
 
 From version 3.1.x to version 3.2.x
 
