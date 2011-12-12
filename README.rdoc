@@ -57,9 +57,9 @@ Switch to the rails2 branch (releases will be in 3.x range)
 
 == Setup
 
-1. You need to have already setup capistrano in the project, including the 'capify .' command.
+1) You need to have already setup capistrano in the project, including the 'capify .' command.
 
-2. Add this line to the top of your config/deploy.rb:
+2) Add this line to the top of your config/deploy.rb:
 
   # For plugin:
   #   You must make capistrano_mailer's libraries available in Ruby's load path.  This is one way to do that:
@@ -80,7 +80,7 @@ Switch to the rails2 branch (releases will be in 3.x range)
   require 'config/cap_mailer_settings'
   ####################################
 
-3. Configure Caistrano Mailer in the settings file required in step 2:
+3) Configure Caistrano Mailer in the settings file required in step 2:
 
   # If installed as a plugin might need the require here as well
 
@@ -105,7 +105,7 @@ Switch to the rails2 branch (releases will be in 3.x range)
     config[:site_name]            = "Empty Example.com App"
   end
 
-4. Add these two tasks to your deploy.rb:
+4) Add these two tasks to your deploy.rb:
 
   namespace :show do
     desc "Show some internal Cap-Fu: What's mah NAYM?!?"
@@ -127,9 +127,9 @@ Switch to the rails2 branch (releases will be in 3.x range)
     ...
   end
 
-5. Make _sure_ you've defined `rails_env`, `repository`, `deploy_to`, `host`, and `application`.  `task_name` is defined by the show:me task above, and the others are defined behind the scenes by Capistrano!
+5) Make _sure_ you've defined `rails_env`, `repository`, `deploy_to`, `host`, and `application`.  `task_name` is defined by the show:me task above, and the others are defined behind the scenes by Capistrano!
 
-6. The only parameter to mailer.send_notification_email that is *required* is the first. _Minimally_ you need to define the capistrano variables:
+6) The only parameter to mailer.send_notification_email that is *required* is the first. _Minimally_ you need to define the capistrano variables:
 
   :rails_env
   :repository
@@ -143,13 +143,13 @@ But there are tons of others - just take a look at lib/mailer/cap_mailer.rb.
 If anyone has a cool way of recording the *output* into a capistrano accessible variable,
 so that it can be shoved into the release email that would be an excellent contribution!
 
-7. Then add the hook somewhere in your deploy.rb:
+7) Then add the hook somewhere in your deploy.rb:
 
   after "deploy", "deploy:notify"
 
-8. Enjoy and Happy Capping!
+8) Enjoy and Happy Capping!
 
-9. Customization
+9) Customization
 
 If you want to use your own views you'll need to recreate the notification_email view:
 First you need to define where your templates are:
