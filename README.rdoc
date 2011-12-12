@@ -65,7 +65,6 @@ From version 2.1.0 to version 3.1.x:
 == Usage
 
 1. Install as gem or plugin.  You need to have already setup capistrano in the project, including the 'capify .' command.
-
 2. Add this line to the top of your config/deploy.rb:
 
   # For plugin:
@@ -86,7 +85,6 @@ From version 2.1.0 to version 3.1.x:
   # The configuration file can go anywhere, but in past versions of the gem it was required to be in the config/ dir.
   require 'config/cap_mailer_settings'
   ####################################
-
 3. Configure Caistrano Mailer in the settings file required in step 2:
 
   # If installed as a plugin might need the require here as well
@@ -112,7 +110,6 @@ From version 2.1.0 to version 3.1.x:
     config[:site_name]            = "Empty Example.com App"
     config[:email_content_type]   = "text/html" # OR "text/plain" if you want the plain text version of the email
   end
-
 4. Add these two tasks to your deploy.rb:
 
   namespace :show do
@@ -150,13 +147,10 @@ But there are tons of others - just take a look at lib/mailer/cap_mailer.rb.
 
 If anyone has a cool way of recording the *output* into a capistrano accessible variable,
 so that it can be shoved into the release email that would be an excellent contribution!
-
 5. Then add the hook somewhere in your deploy.rb:
 
   after "deploy", "deploy:notify"
-
 6. Enjoy and Happy Capping!
-
 7. Customization
 
 If you want to use your own views you'll need to recreate the notification_email view:
