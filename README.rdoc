@@ -66,7 +66,6 @@ From version 2.1.0 to version 3.1.x:
 
 1. Install as gem or plugin.  You need to have already setup capistrano in the project, including the 'capify .' command.
 2. Add this line to the top of your config/deploy.rb:
-
   # For plugin:
   #   You must make capistrano_mailer's libraries available in Ruby's load path.  This is one way to do that:
   #   Add to the top of your config/deploy.rb file:
@@ -86,9 +85,7 @@ From version 2.1.0 to version 3.1.x:
   require 'config/cap_mailer_settings'
   ####################################
 3. Configure Caistrano Mailer in the settings file required in step 2:
-
   # If installed as a plugin might need the require here as well
-
   ActionMailer::Base.delivery_method = :smtp # or :sendmail, or whatever
   ActionMailer::Base.smtp_settings = { # if using :smtp
       :address        => "mail.example.com",
@@ -99,7 +96,6 @@ From version 2.1.0 to version 3.1.x:
       :password       => "mypassword",
       :authentication => :login }
   ActionMailer::Base.default_charset = "utf-8"# or "latin1" or whatever you are using
-
   CapMailer.configure do |config|
     config[:recipient_addresses]  = ["dev1@example.com"]
     # NOTE: THERE IS A BUG IN RAILS 2.3.3 which forces us to NOT use anything but a simple email address string for the sender address.
@@ -111,7 +107,6 @@ From version 2.1.0 to version 3.1.x:
     config[:email_content_type]   = "text/html" # OR "text/plain" if you want the plain text version of the email
   end
 4. Add these two tasks to your deploy.rb:
-
   namespace :show do
     desc "Show some internal Cap-Fu: What's mah NAYM?!?"
     task :me do
@@ -119,22 +114,17 @@ From version 2.1.0 to version 3.1.x:
       #puts "Running #{task_name} task"
     end
   end
-
   namespace :deploy do
     ...
-
     desc "Send email notification of deployment (only send variables you want to be in the email)"
     task :notify, :roles => :app do
       show.me  # this sets the task_name variable
       mailer.send_notification_email(self)
     end
-
     ...
   end
-
 Make _sure_ you've defined `rails_env`, `repository`, `deploy_to`, `host`, and `application`.
 task_name is defined by the show:me task above, and the others are defined behind the scenes by Capistrano!
-
 The only parameter to mailer.send_notification_email that is *required* is the first. _Minimally_ you need to define the capistrano variables:
    :rails_env
    :repository
@@ -142,32 +132,22 @@ The only parameter to mailer.send_notification_email that is *required* is the f
    :deploy_to
    :host
    :application
-
 But there are tons of others - just take a look at lib/mailer/cap_mailer.rb.
-
 If anyone has a cool way of recording the *output* into a capistrano accessible variable,
 so that it can be shoved into the release email that would be an excellent contribution!
 5. Then add the hook somewhere in your deploy.rb:
-
   after "deploy", "deploy:notify"
 6. Enjoy and Happy Capping!
 7. Customization
-
 If you want to use your own views you'll need to recreate the notification_email view:
 First you need to define where your templates are:
-
   CapMailer.configure_capistrano_mailer do |config|
     config[:template_root]      = "app/views/capistrano_mailer/"
   end
-
 Then you'll need to create templates there called:
-
   notification_email.text.html.erb
-
 and / or
-
   notification_email.text.plain.erb
-
 Take a look at the templates that comes with the plugin to see how it is done (views/cap_mailer/...)
 
 == Authors
