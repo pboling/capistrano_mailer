@@ -24,9 +24,9 @@
         data = @section_data[section.to_sym]
         if !data.empty?
           if %w(extra_information release_data).include?(section)
-            render :partial => 'section_custom.html.erb', :locals => {:section_title => section, :data => data}
+            render :partial => 'section_custom', :locals => {:section_title => section, :data => data}
           else
-            render :partial => 'section.html.erb', :locals => {:section_title => section, :data => data}
+            render :partial => 'section', :locals => {:section_title => section, :data => data}
           end
         end
       }.join.html_safe unless @sections.nil? %>
