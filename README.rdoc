@@ -145,7 +145,7 @@ so that it can be shoved into the release email that would be an excellent contr
 
 7) Then add the hook somewhere in your deploy.rb:
 
-  after "deploy", "deploy:notify"
+  after "deploy:update_code", "deploy:notify"
 
 8) Enjoy and Happy Capping!
 
