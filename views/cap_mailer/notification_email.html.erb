@@ -24,16 +24,16 @@
         data = @section_data[section.to_sym]
         if !data.empty?
           if %w(extra_information release_data).include?(section)
-            render :partial => 'section_custom.html.erb', :locals => {:section_title => section, :data => data}
+            render :partial => 'section_custom', :locals => {:section_title => section, :data => data}
           else
-            render :partial => 'section.html.erb', :locals => {:section_title => section, :data => data}
+            render :partial => 'section', :locals => {:section_title => section, :data => data}
           end
         end
       }.join.html_safe unless @sections.nil? %>
    </div>
    
     <p style="margin: 8px 0 20px 20px; padding: 0px; font-style: italic;" >
-      Brought to you by: <a href="http://github.com/textgoeshere/capistrano_mailer">Capistrano Mailer</a>
+      Brought to you by: <a href="http://github.com/pboling/capistrano_mailer">Capistrano Mailer</a>
     </p>
 	</body>
 </html>
