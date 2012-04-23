@@ -1,6 +1,6 @@
 class CapMailer < ActionMailer::Base
 
-  @@default_base_config ||= {
+  @@default_base_config ||= ActiveSupport::InheritableOptions.new({
     :sender_address           => %("#{(defined?(Rails) ? Rails.env.capitalize : defined?(RAILS_ENV) ? RAILS_ENV.capitalize : defined?(ENV) ? ENV['RAILS_ENV'] : "")} Capistrano Deployment" <capistrano.mailer@example.com>),
     :recipient_addresses      => [],
     # Customize the subject line
