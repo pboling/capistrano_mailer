@@ -11,7 +11,7 @@ class CapMailer < ActionMailer::Base
     :site_name                => "",
     :email_content_type       => "text/html",
     :template_root            => "#{File.dirname(__FILE__)}/../views"
-  }
+  })
 
   cattr_accessor :default_base_config
   attr_accessor  :config, :options
