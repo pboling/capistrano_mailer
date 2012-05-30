@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title><%= @site_name %> Notification </title>
+    <%= stylesheet_link_tag @job_status.to_s %>
+  </head>
+  <body>
+  
+    <div class="mail-content">
+      <h1><%= @site_name %> <%=@task_name.titleize unless @task_name.nil? %></h1>
+
+      <% unless @site_url.nil? %>
+        <p class="view-site">
+          View site: <a href="<%= @site_url.html_safe -%>"><%= @site_url.html_safe -%></a>
+        </p>
+      <% end %>
+
+      <p class="released">Released: <%= @date %> at <%= @time %></p>
+      
+      <%= @sections.map { |section|
+        data = @section_data[section.to_sym]
+        if !data.empty?
+          if %w(extra_information release_data).include?(section)
+            render 'section_custom', {:section_title => section, :data => data}
+          else
+            render 'section', {:section_title => section, :data => data}
+          end
+        end
+      }.join.html_safe unless @sections.nil? %>
+   </div>
+   
+    <p class="mail-footer" >
+      Brought to you by: <a href="http://github.com/pboling/capistrano_mailer">Capistrano Mailer</a>
+    </p>
+  </body>
+</html>
