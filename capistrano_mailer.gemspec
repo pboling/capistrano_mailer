@@ -15,23 +15,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = [
     "README.rdoc"
   ]
-  s.files = [
-    "MIT-LICENSE",
-    "README.rdoc",
-    "Rakefile",
-    "VERSION.yml",
-    "capistrano_mailer.gemspec",
-    "lib/cap_mailer.rb",
-    "lib/capistrano/mailer.rb",
-    "views/cap_mailer/_section.html.erb",
-    "views/cap_mailer/_section.text.erb",
-    "views/cap_mailer/_section_custom.html.erb",
-    "views/cap_mailer/_section_custom.text.erb",
-    "views/cap_mailer/notification_email.html.erb",
-    "views/cap_mailer/notification_email.text.erb"
-  ]
   s.homepage = "http://github.com/pboling/capistrano_mailer"
-  s.require_paths = ["lib"]
   s.rubygems_version = "1.8.10"
   s.summary = "Capistrano Deployment Email Notification"
 
@@ -46,5 +30,13 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<actionmailer>, [">= 0"])
   end
+
+  s.add_dependency "inline-style"
+  s.add_dependency "capistrano-log_with_awesome"
+
+  s.files         = `git ls-files`.split("\n")
+  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.require_paths = ["lib"]
 end
 

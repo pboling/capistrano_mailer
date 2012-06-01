@@ -9,8 +9,9 @@ class CapMailer < ActionMailer::Base
     # Include which sections of the deployment email?
     :sections                 => %w(deployment release_data source_control latest_release previous_release other_deployment_info extra_information),
     :site_name                => "",
-    :email_content_type       => "text/html",
-    :template_root            => "#{File.dirname(__FILE__)}/../views"
+    :template_prefixes        => { :success => nil, :failure => "failed" },
+    :template_path            => "#{File.dirname(__FILE__)}/../views",
+    :attach_log_on            => :failure
   })
 
   cattr_accessor :default_base_config
@@ -25,7 +26,10 @@ class CapMailer < ActionMailer::Base
     puts "Deprecated 'configure_capistrano_mailer'.  Please update your capistrano_mailer configuration to use 'configure' instead of 'configure_capistrano_mailer'"
   end
 
-  self.prepend_view_path default_base_config[:template_root]
+  self.prepend_view_path default_base_config[:template_path]
+  self.register_interceptor InlineStyle::Mail::Interceptor.new(:stylesheets_path =>
+    (default_base_config[:stylesheets_path] || "#{File.dirname(__FILE__)}/../assets")
+  )
 
   def self.reloadable?() false end
     
@@ -43,8 +47,6 @@ class CapMailer < ActionMailer::Base
           :revision           => cap.revision,
           :real_revision      => cap.real_revision,
           :release_name       => cap.release_name,
-          #This does not appear to be a capistrano variable:
-          #:release_notes      => cap.release_notes,
           :version_dir        => cap.version_dir,
           :shared_dir         => cap.shared_dir,
           :current_dir        => cap.current_dir,
@@ -60,9 +62,6 @@ class CapMailer < ActionMailer::Base
           :previous_revision  => cap.previous_revision,
           :run_method         => cap.run_method,
           :latest_release     => cap.latest_release
-    
-          #This does not appear to be a capistrano variable:
-          #:site_url           => cap.site_url
     }))
     
     @date             = Date.today.to_s
@@ -84,9 +83,32 @@ class CapMailer < ActionMailer::Base
       self.instance_variable_set("@#{k}", v)
     end
 
-    mail :subject       => subject_line,
+    log = cap.fetch(:full_log)
+    fail_pattern = /^failed|rolling back/i
+    @job_status = (log =~ fail_pattern) ? :failure : cap.fetch(:mailer_status, :success)
+    template_prefix = @config[:template_prefixes][@job_status] ? "#{@config[:template_prefixes][@job_status]}." : ""
+    template_name = @config[:template_name] || "#{template_prefix}#{action_name}"
+
+    attach_log = case @config[:attach_log_on]
+      when Symbol, String
+        @job_status == @config[:attach_log_on].to_sym
+      when Array
+        @config[:attach_log_on].collect(&:to_sym).include? @job_status
+      else
+        false
+    end
+
+    if attach_log
+      log_file_name = "deploy-log-#{Time.now.strftime("%Y-%m-%d-%H%M%S")}.txt"
+      attachments[log_file_name] = { :content => log, :mime_type => "text/plain" }
+    end
+
+    self.config.assets_dir = "#{File.dirname(__FILE__)}/../assets"
+
+    mail :subject       => "#{@job_status.to_s.upcase}: #{subject_line}",
          :to            => @config[:recipient_addresses],
-         :from          => @config[:sender_address]
+         :from          => @config[:sender_address],
+         :template_name => template_name
   end
 
   private

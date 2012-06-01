@@ -1,0 +1,60 @@
+body {
+    font: 14px normal Helvetica, Arial, Sans;
+    background: #966;
+}
+
+div.mail-content {
+    width: 800px;
+    margin: 10px auto;
+    background: #fdd;
+    border: 10px solid #a66;
+}
+
+h1 {
+    clear: both;
+    margin: 0;
+    padding: 40px 20px 5px 20px;
+    border-bottom: 1px dotted;
+    background: #c88;
+}
+
+p.view-site, p.mail-footer {
+    margin: 8px 0 20px 20px;
+    padding: 0;
+    font-style: italic;
+}
+
+p.released {
+    margin: 10px 20px;
+    font-weight: bold;
+}
+
+div.section {
+    margin: 20px;
+    padding: 0 0 20px 0;
+}
+
+div.section h2 {
+    margin: 0;
+    padding: 10px 10px 5px 10px;
+    background: #fcc;
+    border-left: 10px solid #a66;
+    color: #333;
+}
+
+div.section p.data-item {
+    margin: 10px; padding: 0;
+}
+
+div.section p.data-item p.key {
+    float: left;
+    width: 150px;
+    padding: 10px 10px 0;
+}
+
+div.section p.data-item p.value {
+    float: left;
+    width: 490px;
+    padding: 10px 10px 0;
+}
+
