@@ -1,0 +1,24 @@
+<%= @site_name %> Notification
+===========================================================
+
+    <%= @site_name %> <%=@task_name.titleize unless @task_name.nil? %>
+    Job status: <%= @job_status.to_s %>
+===========================================================
+      Brought to you by: Capistrano Mailer - http://github.com/pboling/capistrano_mailer
+      Released: <%= @date %> at <%= @time %>
+
+      <%= @sections.map { |section|
+        data = @section_data[section.to_sym]
+        if !data.empty?
+          if %w(extra_information release_data).include?(section)
+            render 'section_custom', {:section_title => section, :data => data}
+          else
+            render 'section', {:section_title => section, :data => data}
+          end
+        end
+      }.join.html_safe unless @sections.nil? %>
+
+===========================================================
+    Copyright 2009 9thBit LLC under MIT License
+    Copyright 2007-8 Sagebit LLC under MIT License
+
