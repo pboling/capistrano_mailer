@@ -1,4 +1,4 @@
-= Capistrano Mailer
+= Capistrano Mailer {<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/pboling/capistrano_mailer]
 
   * For Capistrano Deployment Email Notification 
   * It is a Capistrano Plugin / Ruby Gem that requires ActionMailer
