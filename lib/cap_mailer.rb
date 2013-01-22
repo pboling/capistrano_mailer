@@ -47,6 +47,7 @@ class CapMailer < ActionMailer::Base
           :revision           => cap.revision,
           :real_revision      => cap.real_revision,
           :release_name       => cap.release_name,
+          :release_notes      => cap.release_notes,
           :version_dir        => cap.version_dir,
           :shared_dir         => cap.shared_dir,
           :current_dir        => cap.current_dir,
