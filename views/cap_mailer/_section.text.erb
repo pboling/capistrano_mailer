@@ -17,7 +17,7 @@
 <% if !arr.nil? && arr.is_a?(Array) %>
   <% arr.each do |key| -%>
     <% if key.is_a?(Symbol) && !data[key].nil?-%>
-        <%= key.to_s.titleize %>                <%= data[key].is_a?(Array) ? data[key].to_sentence : data[key].is_a?(String) ? data[key] : data[key].inspect %>
+        <%= key.to_s.titleize %>                <%= data[key].is_a?(Array) ? data[key].try(:to_sentence) : data[key].is_a?(String) ? data[key] : data[key].inspect %>
     <% end -%>
   <% end -%>
 <% end -%>

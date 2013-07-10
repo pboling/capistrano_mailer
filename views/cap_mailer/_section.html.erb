@@ -19,7 +19,7 @@
       <% if key.is_a?(Symbol) && !data[key].nil?-%>
         <p class="data-item">
           <span class="key"><%= key.to_s.titleize %></span>
-          <span class="value"><%= data[key].is_a?(Array) ? data[key].to_sentence : data[key].is_a?(String) ? data[key].gsub(/\n/, '<br>').gsub(/\n/, '<br>').html_safe : data[key].inspect.html_safe %></span>
+          <span class="value"><%= data[key].is_a?(Array) ? data[key].try(:to_sentence) : data[key].is_a?(String) ? data[key].gsub(/\n/, '<br>').gsub(/\n/, '<br>').html_safe : data[key].inspect.html_safe %></span>
         </p>
       <% end -%>
     <% end -%>
