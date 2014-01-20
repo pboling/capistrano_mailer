@@ -1,14 +1,16 @@
-require 'rubygems' unless defined?(Rubygems)
-require 'capistrano' unless defined?(Capistrano)
+require 'capistrano_mailer/version'
+
+require 'capistrano'
 
 unless Capistrano::Configuration.respond_to?(:instance)
-  abort "capistrano/mailer requires Capistrano 2"
+  abort 'capistrano/mailer requires Capistrano 2'
 end
 
 require 'capistrano/log_with_awesome'
 require 'inline-style'
-require 'action_mailer' unless defined?(ActionMailer)
-require 'cap_mailer' unless defined?(CapMailer)
+require 'action_mailer'
+
+require 'cap_mailer'
 
 module Capistrano
   class Configuration
