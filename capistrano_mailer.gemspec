@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency(%q<capistrano-log_with_awesome>, [">= 0"])
   s.add_runtime_dependency(%q<inline-style>, [">= 0"])
-  s.add_runtime_dependency(%q<actionmailer>, [">= 0"])
+  s.add_runtime_dependency(%q<actionmailer>, [">= 0","< 4"])
 
 end
 
