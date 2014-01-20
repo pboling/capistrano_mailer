@@ -22,7 +22,8 @@ A Gem For Capistrano Deployment Email Notification
   * It is a Capistrano Plugin / Ruby Gem that requires ActionMailer
   * It is MIT licensed
   * It is old as duck, and it might be almost dead, maybe. (I started this project in 2007)
-  * Requires at least Rails 3.0 (might work with older versions, but has not been tested)
+  * rails2 branch, releases will be in 3.x range, requires Rails 2.X
+  * master branch, releases will be in 4.x range, requires Rails 3.X
   * Requires at least Capistrano 2.4.3 (might work with capistrano as old as 2.1.0, but has not been tested)
   * Known to be compatible with SCMs as of version 3.1.2: Perforce, SVN, and Git
   * Known to be compatible with, but does not require, the deprec gem.
