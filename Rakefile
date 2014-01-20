@@ -1,23 +1,5 @@
 require 'rake'
 require 'rake/testtask'
-require 'rdoc/task'
-
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gemspec|
-    gemspec.name = "capistrano_mailer"
-    gemspec.summary = "Capistrano Deployment Email Notification"
-    gemspec.description = %q{Capistrano Deployment Email Notification.  Keep the whole team informed of each release!}
-    gemspec.email = ["peter.boling@gmail.com", "dave@textgoeshere.org.uk", "jason@rustedcode.com"]
-    gemspec.homepage = "http://github.com/pboling/capistrano_mailer"
-    gemspec.authors = ["Peter Boling", "Dave Nolan", "Jason Rust"]
-    gemspec.add_dependency 'actionmailer'
-    gemspec.files = `git ls-files`.split("\n")
-  end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler not available. Install it with: sudo gem install jeweler"
-end
 
 desc 'Default: run unit tests.'
 task :default => :test
@@ -31,7 +13,9 @@ Rake::TestTask.new(:test) do |t|
 end
 
 desc 'Generate documentation for the capistrano_mailer gem.'
-Rake::RDocTask.new(:rdoc) do |rdoc|
+require 'rdoc'
+require 'rdoc/task'
+RDoc::Task.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title    = 'capistrano_mailer'
   rdoc.options << '--line-numbers' << '--inline-source'
