@@ -1,3 +1,16 @@
+## Version 4.1.0.pre1 2014-01-20
+* Gemfile.lock should not be in version control for a gem by Peter Boling
+* Won't work with ActionMailer 4 yet by Peter Boling
+* Fix mailer issue again by Moritz Lawitschka (lawitschka)
+* fix mailer issues by Elan Meng (dreamwords)
+* Do not require RubyGems by Peter Boling
+* Fix dependency declarations; remove jeweler dependency; improve gemspec by Peter Boling
+* Modernize the ruby manager by Peter Boling
+* Modernize the VERSION by Peter Boling
+* Markdown the Readme. by Peter Boling
+* Modern the License by Peter Boling
+* Markdown the Changelog by Peter Boling
+
 ## Version 4.0.2 2013-01-21
 * Git Release Notes by Mark Sim (marksim)
 * Style improvements by Bartłomiej Danek (bartekd)
