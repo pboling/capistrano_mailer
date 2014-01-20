@@ -37,7 +37,7 @@ class CapMailer < ActionMailer::Base
     @options = { :release_data => {}, :extra_information => {}, :data => {} }.merge(args.extract_options!)
     @config  = default_base_config.merge(config.reverse_merge({
           :rails_env          => cap.rails_env,
-          :host               => cap.host,
+          :host               => (cap.host rescue ''),
           :task_name          => cap.task_name,
           :application        => cap.application,
           :repository         => cap.repository,
@@ -47,7 +47,7 @@ class CapMailer < ActionMailer::Base
           :revision           => cap.revision,
           :real_revision      => cap.real_revision,
           :release_name       => cap.release_name,
-          :release_notes      => cap.release_notes,
+          :release_notes      => (cap.release_notes rescue ''),
           :version_dir        => cap.version_dir,
           :shared_dir         => cap.shared_dir,
           :current_dir        => cap.current_dir,
