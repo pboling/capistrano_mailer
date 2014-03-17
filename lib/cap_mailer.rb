@@ -16,8 +16,9 @@ class CapMailer < ActionMailer::Base
   cattr_accessor :default_base_config
   attr_accessor  :config, :options
   attr_accessor  :date, :time, :inferred_command, :task_name, :repo_end
-  
+
   def self.configure(&block)
+    @config = {}
     yield @@default_base_config
   end
 
@@ -28,46 +29,90 @@ class CapMailer < ActionMailer::Base
   self.template_root = default_base_config[:template_root]
 
   def self.reloadable?() false end
-    
+
+  def config_from_cap_hash(cap)
+    @config  = default_base_config.merge({
+                                                                :rails_env          => cap[:rails_env],
+                                                                :host               => cap[:host],
+                                                                :task_name          => cap[:task_name],
+                                                                :application        => cap[:application],
+                                                                :repository         => cap[:repository],
+                                                                :scm                => cap[:scm],
+                                                                :deploy_via         => cap[:deploy_via],
+                                                                :deploy_to          => cap[:deploy_to],
+                                                                :revision           => cap[:revision],
+                                                                :real_revision      => cap[:real_revision],
+                                                                :release_name       => cap[:release_name],
+                                                                :version_dir        => cap[:version_dir],
+                                                                :shared_dir         => cap[:shared_dir],
+                                                                :current_dir        => cap[:current_dir],
+                                                                :releases_path      => cap[:releases_path],
+                                                                :shared_path        => cap[:shared_path],
+                                                                :current_path       => cap[:current_path],
+                                                                :release_path       => cap[:release_path],
+                                                                :releases           => cap[:releases],
+                                                                :current_release    => cap[:current_release],
+                                                                :previous_release   => cap[:previous_release],
+                                                                :current_revision   => cap[:current_revision],
+                                                                :latest_revision    => cap[:latest_revision],
+                                                                :previous_revision  => cap[:previous_revision],
+                                                                :run_method         => cap[:run_method],
+                                                                :latest_release     => cap[:latest_release]
+
+                                                                #This does not appear to be a capistrano variable:
+                                                                #:site_url           => cap[:site_url]
+                                                              })
+
+  end
+
+  def config_from_cap_object(cap)
+    @config  = default_base_config.merge({
+                                                                :rails_env          => cap.rails_env,
+                                                                :host               => cap.host,
+                                                                :task_name          => cap.task_name,
+                                                                :application        => cap.application,
+                                                                :repository         => cap.repository,
+                                                                :scm                => cap.scm,
+                                                                :deploy_via         => cap.deploy_via,
+                                                                :deploy_to          => cap.deploy_to,
+                                                                :revision           => cap.revision,
+                                                                :real_revision      => cap.real_revision,
+                                                                :release_name       => cap.release_name,
+                                                                :version_dir        => cap.version_dir,
+                                                                :shared_dir         => cap.shared_dir,
+                                                                :current_dir        => cap.current_dir,
+                                                                :releases_path      => cap.releases_path,
+                                                                :shared_path        => cap.shared_path,
+                                                                :current_path       => cap.current_path,
+                                                                :release_path       => cap.release_path,
+                                                                :releases           => cap.releases,
+                                                                :current_release    => cap.current_release,
+                                                                :previous_release   => cap.previous_release,
+                                                                :current_revision   => cap.current_revision,
+                                                                :latest_revision    => cap.latest_revision,
+                                                                :previous_revision  => cap.previous_revision,
+                                                                :run_method         => cap.run_method,
+                                                                :latest_release     => cap.latest_release
+
+                                                                #This does not appear to be a capistrano variable:
+                                                                #:site_url           => cap.site_url
+                                                              })
+
+  end
+
   def notification_email(cap, config = {}, *args)
+    if cap.is_a?(Array)
+      config_from_cap_hash(cap.first)
+    else
+      config_from_cap_object(cap)
+    end
     @options = { :release_data => {}, :extra_information => {}, :data => {} }.merge(args.extract_options!)
-    @config  = default_base_config.merge(config.reverse_merge({
-          :rails_env          => cap.rails_env,
-          :host               => cap.host,
-          :task_name          => cap.task_name,
-          :application        => cap.application,
-          :repository         => cap.repository,
-          :scm                => cap.scm,
-          :deploy_via         => cap.deploy_via,
-          :deploy_to          => cap.deploy_to,
-          :revision           => cap.revision,
-          :real_revision      => cap.real_revision,
-          :release_name       => cap.release_name,
-          :version_dir        => cap.version_dir,
-          :shared_dir         => cap.shared_dir,
-          :current_dir        => cap.current_dir,
-          :releases_path      => cap.releases_path,
-          :shared_path        => cap.shared_path,
-          :current_path       => cap.current_path,
-          :release_path       => cap.release_path,
-          :releases           => cap.releases,
-          :current_release    => cap.current_release,
-          :previous_release   => cap.previous_release,
-          :current_revision   => cap.current_revision,
-          :latest_revision    => cap.latest_revision,
-          :previous_revision  => cap.previous_revision,
-          :run_method         => cap.run_method,
-          :latest_release     => cap.latest_release
-    
-          #This does not appear to be a capistrano variable:
-          #:site_url           => cap.site_url
-    }))
-    
+
     @date             = Date.today.to_s
     @time             = Time.now.strftime("%I:%M %p").to_s
     @inferred_command = "cap #{@config[:rails_env]} #{@config[:task_name]}"
     @task_name        = @config[:task_name] || "unknown"
-    
+
     repo  = @config[:repository]
     x     = repo.include?('/') ? repo.rindex('/') - 1 : repo.length
     front = repo.slice(0..x)
@@ -77,7 +122,7 @@ class CapMailer < ActionMailer::Base
       front = front.slice(0..x)
     end
     @repo_end = repo.sub(front, '')
-	  
+
     subject       subject_line
     recipients    @config[:recipient_addresses]
     from          @config[:sender_address]
@@ -87,7 +132,7 @@ class CapMailer < ActionMailer::Base
   end
 
   private
-  
+
     def subject_line
       #The subject prepend and append are useful for people to setup filters in mail clients.
       user = config[:user] ? " by #{config[:user]}" : ""
