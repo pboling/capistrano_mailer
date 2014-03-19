@@ -7,9 +7,10 @@
       <p style="margin: 10px; padding: 0px;">
         <span style="float:left; width:150px; padding: 10px 10px 0;"><%= key %></span>
         <span style="float:left; width:490px; padding: 10px 10px 0;"><%= value.is_a?(Array) ? value.to_sentence : value.is_a?(String) ? value : value.inspect%></span>
+        <span style="clear: both;"></span>
       </p>
     <% end -%>
   <% end unless data.nil?-%>
   <p style="clear:both"></p>
-  
+
 </div>
