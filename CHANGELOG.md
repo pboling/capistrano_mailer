@@ -1,6 +1,8 @@
+## Next...
+* Add tests with rspec and capistrano-spec
+
 ## Version 3.3.0 2014-03-17
 * Fix compatibility with Rails 2.3.18
-* Add tests with rspec and capistrano-spec
 * Integrate Travis-ci
 * Integrate Coveralls
 * Backport (most) new features from master (4.X releases)
