@@ -10,7 +10,7 @@ A Gem For Capistrano Deployment Email Notification
 | version                 |  [![Gem Version](https://badge.fury.io/rb/capistrano_mailer.png)](http://badge.fury.io/rb/capistrano_mailer) |
 | dependencies            |  [![Dependency Status](https://gemnasium.com/pboling/capistrano_mailer.png)](https://gemnasium.com/pboling/capistrano_mailer) |
 | code quality            |  [![Code Climate](https://codeclimate.com/github/pboling/capistrano_mailer.png)](https://codeclimate.com/github/pboling/capistrano_mailer) |
-| inline documenation     |  [![Inline docs](http://inch-pages.github.io/github/pboling/capistrano_mailer.png)](http://inch-pages.github.io/github/pboling/capistrano_mailer) |
+| inline documenation     |  [![Inline docs](http://inch-ci.org/github/pboling/capistrano_mailer.png)](http://inch-ci.org/github/pboling/capistrano_mailer) |
 | continuous integration  |  [![Build Status](https://secure.travis-ci.org/pboling/capistrano_mailer.png?branch=master)](https://travis-ci.org/pboling/capistrano_mailer) |
 | test coverage           |  [![Coverage Status](https://coveralls.io/repos/pboling/capistrano_mailer/badge.png)](https://coveralls.io/r/pboling/capistrano_mailer) |
 | homepage                |  [https://github.com/pboling/capistrano_mailer][homepage] |
