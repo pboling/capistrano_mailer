@@ -2,21 +2,31 @@
 
 A Gem For Capistrano Deployment Email Notification
 
-| Project                 |  Capistrano Mailer   |
+| Project                 |  CapistranoMailer    |
 |------------------------ | ----------------- |
 | gem name                |  capistrano_mailer   |
 | license                 |  MIT              |
-| moldiness               |  [![Maintainer Status](http://stillmaintained.com/pboling/capistrano_mailer.png)](http://stillmaintained.com/pboling/capistrano_mailer) |
+| expert support          |  [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/peterboling?utm_source=github&utm_medium=button&utm_term=peterboling&utm_campaign=github) |
+| download rank               |  [![Total Downloads](https://img.shields.io/gem/rt/capistrano_mailer.svg)](https://rubygems.org/gems/capistrano_mailer) |
 | version                 |  [![Gem Version](https://badge.fury.io/rb/capistrano_mailer.png)](http://badge.fury.io/rb/capistrano_mailer) |
 | dependencies            |  [![Dependency Status](https://gemnasium.com/pboling/capistrano_mailer.png)](https://gemnasium.com/pboling/capistrano_mailer) |
 | code quality            |  [![Code Climate](https://codeclimate.com/github/pboling/capistrano_mailer.png)](https://codeclimate.com/github/pboling/capistrano_mailer) |
 | inline documenation     |  [![Inline docs](http://inch-ci.org/github/pboling/capistrano_mailer.png)](http://inch-ci.org/github/pboling/capistrano_mailer) |
 | continuous integration  |  [![Build Status](https://secure.travis-ci.org/pboling/capistrano_mailer.png?branch=master)](https://travis-ci.org/pboling/capistrano_mailer) |
 | test coverage           |  [![Coverage Status](https://coveralls.io/repos/pboling/capistrano_mailer/badge.png)](https://coveralls.io/r/pboling/capistrano_mailer) |
-| homepage                |  [https://github.com/pboling/capistrano_mailer][homepage] |
-| documentation           |  [http://rdoc.info/github/pboling/capistrano_mailer/frames][documentation] |
-| author                  |  [Peter Boling](https://coderbits.com/pboling) |
-| Spread ~♡ⓛⓞⓥⓔ♡~      |  [![Endorse Me](https://api.coderwall.com/pboling/endorsecount.png)](http://coderwall.com/pboling) |
+| homepage                |  [on Github.com][homepage] |
+| documentation           |  [on Rdoc.info][documentation] |
+| live chat               |  [![Join the chat at https://gitter.im/pboling/capistrano_mailer](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pboling/capistrano_mailer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) |
+| Spread ~♡ⓛⓞⓥⓔ♡~      |  [on Coderbits][coderbits], [on Coderwall][coderwall] |
+
+[semver]: http://semver.org/
+[pvc]: http://docs.rubygems.org/read/chapter/16#page74
+[railsbling]: http://www.railsbling.com
+[peterboling]: http://www.peterboling.com
+[coderbits]: https://coderbits.com/pboling
+[coderwall]: http://coderwall.com/pboling
+[documentation]: http://rdoc.info/github/pboling/capistrano_mailer/frames
+[homepage]: https://github.com/pboling/capistrano_mailer
 
 ## Summary
 
@@ -238,11 +248,3 @@ For example:
 * MIT License - See LICENSE file in this project
 * Copyright (c) 2008-2014 [Peter H. Boling][peterboling] of [Rails Bling][railsbling]
 * Copyright (c) 2007-8 Peter Boling & Sagebit, LLC
-
-[semver]: http://semver.org/
-[pvc]: http://docs.rubygems.org/read/chapter/16#page74
-[railsbling]: http://www.railsbling.com
-[peterboling]: http://www.peterboling.com
-[documentation]: http://rdoc.info/github/pboling/capistrano_mailer/frames
-[homepage]: https://github.com/pboling/capistrano_mailer
-
