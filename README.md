@@ -87,82 +87,90 @@ Switch to the rails2 branch (releases will be in 3.x range)
 
 2) Add this line to the top of your config/deploy.rb:
 
-    # For plugin:
-    #   You must make capistrano_mailer's libraries available in Ruby's load path.  This is one way to do that:
-    #   Add to the top of your config/deploy.rb file:
-    $:.unshift 'vendor/plugins/capistrano_mailer/lib'
+``` ruby
+# For plugin:
+#   You must make capistrano_mailer's libraries available in Ruby's load path.  This is one way to do that:
+#   Add to the top of your config/deploy.rb file:
+$:.unshift 'vendor/plugins/capistrano_mailer/lib'
 
-    # For frozen gem:
-    #   You must make capistrano_mailer's libraries available in Ruby's load path.  This is one way to do that:
-    #   Add to the top of your config/deploy.rb file:
-    $:.unshift 'vendor/gems/capistrano_mailer-x.x.x/lib'
+# For frozen gem:
+#   You must make capistrano_mailer's libraries available in Ruby's load path.  This is one way to do that:
+#   Add to the top of your config/deploy.rb file:
+$:.unshift 'vendor/gems/capistrano_mailer-x.x.x/lib'
 
-    # then for gem or plugin:
-    ####################################
-    # Capistrano Plugins go here
-    require 'capistrano/mailer'
-    #configure capistrano_mailer:
-    # The configuration file can go anywhere, but in past versions of the gem it was required to be in the config/ dir.
-    require 'config/cap_mailer_settings'
-    ####################################
+# then for gem or plugin:
+####################################
+# Capistrano Plugins go here
+require 'capistrano/mailer'
+#configure capistrano_mailer:
+# The configuration file can go anywhere, but in past versions of the gem it was required to be in the config/ dir.
+require 'config/cap_mailer_settings'
+####################################
+```
 
 3) Configure Caistrano Mailer in the settings file required in step 2:
 
-    # If installed as a plugin might need the require here as well
+```` ruby
+# If installed as a plugin might need the require here as well
 
-    ActionMailer::Base.delivery_method = :smtp # or :sendmail, or whatever
-    ActionMailer::Base.smtp_settings = { # if using :smtp
-        :address        => "mail.example.com",
-        :port           => 25,
-        :domain         => 'default.com',
-        :perform_deliveries => true,
-        :user_name      => "releases@example.com",
-        :password       => "mypassword",
-        :authentication => :login }
-    ActionMailer::Base.default_charset = "utf-8"# or "latin1" or whatever you are using
+ActionMailer::Base.delivery_method = :smtp # or :sendmail, or whatever
+ActionMailer::Base.smtp_settings = { # if using :smtp
+    :address        => "mail.example.com",
+    :port           => 25,
+    :domain         => 'default.com',
+    :perform_deliveries => true,
+    :user_name      => "releases@example.com",
+    :password       => "mypassword",
+    :authentication => :login }
+ActionMailer::Base.default_charset = "utf-8"# or "latin1" or whatever you are using
 
-    CapMailer.configure do |config|
-      config[:recipient_addresses]  = ["dev1@example.com"]
-      # NOTE: THERE IS A BUG IN RAILS 2.3.3 which forces us to NOT use anything but a simple email address string for the sender address.
-      # https://rails.lighthouseapp.com/projects/8994/tickets/2340
-      # Therefore %("Capistrano Deployment" <releases@example.com>) style addresses may not work in Rails 2.3.3
-      config[:sender_address]       = "deployment@example.com"
-      config[:subject_prepend]      = "[EMPTY-CAP-DEPLOY]"
-      config[:site_name]            = "Empty Example.com App"
-    end
+CapMailer.configure do |config|
+  config[:recipient_addresses]  = ["dev1@example.com"]
+  # NOTE: THERE IS A BUG IN RAILS 2.3.3 which forces us to NOT use anything but a simple email address string for the sender address.
+  # https://rails.lighthouseapp.com/projects/8994/tickets/2340
+  # Therefore %("Capistrano Deployment" <releases@example.com>) style addresses may not work in Rails 2.3.3
+  config[:sender_address]       = "deployment@example.com"
+  config[:subject_prepend]      = "[EMPTY-CAP-DEPLOY]"
+  config[:site_name]            = "Empty Example.com App"
+end
+````
 
 4) Add these two tasks to your deploy.rb:
 
-    namespace :show do
-      desc "Show some internal Cap-Fu: What's mah NAYM?!?"
-      task :me do
-        set :task_name, task_call_frames.first.task.fully_qualified_name
-        #puts "Running #{task_name} task"
-      end
-    end
+``` ruby
+namespace :show do
+  desc "Show some internal Cap-Fu: What's mah NAYM?!?"
+  task :me do
+    set :task_name, task_call_frames.first.task.fully_qualified_name
+    #puts "Running #{task_name} task"
+  end
+end
 
-    namespace :deploy do
-      ...
+namespace :deploy do
+  ...
 
-      desc "Send email notification of deployment (only send variables you want to be in the email)"
-      task :notify, :roles => :app do
-        show.me  # this sets the task_name variable
-        mailer.send_notification_email(self)
-      end
+  desc "Send email notification of deployment (only send variables you want to be in the email)"
+  task :notify, :roles => :app do
+    show.me  # this sets the task_name variable
+    mailer.send_notification_email(self)
+  end
 
-      ...
-    end
+  ...
+end
+```
 
 5) Make _sure_ you've defined `rails_env`, `repository`, `deploy_to`, `host`, and `application`.  `task_name` is defined by the show:me task above, and the others are defined behind the scenes by Capistrano!
 
 6) The only parameter to mailer.send_notification_email that is *required* is the first. _Minimally_ you need to define the capistrano variables:
 
-    :rails_env
-    :repository
-    :task_name (provided by the show:me task included in this readme)
-    :deploy_to
-    :host
-    :application
+``` ruby
+:rails_env
+:repository
+:task_name (provided by the show:me task included in this readme)
+:deploy_to
+:host
+:application
+```
 
 But there are tons of others - just take a look at lib/mailer/cap_mailer.rb.
 
@@ -171,7 +179,9 @@ so that it can be shoved into the release email that would be an excellent contr
 
 7) Then add the hook somewhere in your deploy.rb:
 
-    after "deploy", "deploy:notify"
+``` ruby
+after "deploy", "deploy:notify"
+```
 
 8) Enjoy and Happy Capping!
 
@@ -180,17 +190,19 @@ so that it can be shoved into the release email that would be an excellent contr
 If you want to use your own views you'll need to recreate the notification_email view:
 First you need to define where your templates are:
 
-    CapMailer.configure_capistrano_mailer do |config|
-      config[:template_root]      = "app/views/capistrano_mailer/"
-    end
+``` ruby
+CapMailer.configure_capistrano_mailer do |config|
+  config[:template_root]      = "app/views/capistrano_mailer/"
+end
+```
 
 Then you'll need to create templates there called:
 
-  `notification_email.text.html.erb`
+`notification_email.text.html.erb`
 
 and / or
 
-  `notification_email.text.plain.erb`
+`notification_email.text.plain.erb`
 
 Take a look at the templates that comes with the plugin to see how it is done (views/cap_mailer/...)
 
@@ -241,7 +253,9 @@ dependency on this gem using the [Pessimistic Version Constraint][pvc] with two 
 
 For example:
 
-    spec.add_dependency 'capistrano_mailer', '~> 0.5'
+``` ruby
+spec.add_dependency 'capistrano_mailer', '~> 0.5'
+```
 
 ## License
 
