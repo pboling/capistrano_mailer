@@ -15,9 +15,9 @@ A Gem For Capistrano Deployment Email Notification
 | continuous integration  |  [![Build Status](https://secure.travis-ci.org/pboling/capistrano_mailer.png?branch=master)](https://travis-ci.org/pboling/capistrano_mailer) |
 | test coverage           |  [![Coverage Status](https://coveralls.io/repos/pboling/capistrano_mailer/badge.png)](https://coveralls.io/r/pboling/capistrano_mailer) |
 | homepage                |  [on Github.com][homepage] |
-| documentation           |  [on Rdoc.info][documentation] |
+| documentation           |  [on RubyDoc.info][documentation] |
 | live chat               |  [![Join the chat at https://gitter.im/pboling/capistrano_mailer](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pboling/capistrano_mailer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) |
-| Spread ~♡ⓛⓞⓥⓔ♡~      |  [🌏](https://about.me/peter.boling), [👼](https://angel.co/peter-boling), [:shipit:](http://coderwall.com/pboling), [![Tweet Peter](https://img.shields.io/twitter/follow/galtzo.svg?style=social&label=Follow)](http://twitter.com/galtzo), [🌹](https://nationalprogressiveparty.org) |
+| Spread ~♡ⓛⓞⓥⓔ♡~      |  [🌏](https://about.me/peter.boling), [👼](https://angel.co/peter-boling), [:shipit:](http://coderwall.com/pboling), [![Tweet Peter](https://img.shields.io/twitter/follow/galtzo.svg?style=social&label=Follow)](http://twitter.com/galtzo) |
 
 [semver]: http://semver.org/
 [pvc]: http://docs.rubygems.org/read/chapter/16#page74
@@ -25,7 +25,7 @@ A Gem For Capistrano Deployment Email Notification
 [peterboling]: http://www.peterboling.com
 [coderbits]: https://coderbits.com/pboling
 [coderwall]: http://coderwall.com/pboling
-[documentation]: http://rdoc.info/github/pboling/capistrano_mailer/frames
+[documentation]: http://rubydoc.info/gems/capistrano_mailer
 [homepage]: https://github.com/pboling/capistrano_mailer
 
 ## Summary
